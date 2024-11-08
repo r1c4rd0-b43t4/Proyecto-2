@@ -1,4 +1,8 @@
 package Main;
+import Carga.*;
+        
+
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,7 +19,9 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Reader reader = new Reader();
+        reader.Read();
+        
     }
     
 }
