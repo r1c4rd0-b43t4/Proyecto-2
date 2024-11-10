@@ -51,7 +51,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para agregar un Nodo asignandole un padre
+     * Metodo para agregar un Nodo hijo (el que se crea) asignandole un padre (existente)
      * @param nombrePadre
      * @param nombreHijo 
      */
@@ -94,6 +94,11 @@ public class Arbol {
             return null;
         }
     }
+    /**
+     * Metodo que devuelve el array de los antepasados del nodo buscado
+     * @param nombre
+     * @return 
+     */
     public String[] obtenerAntepasados(String nombre) {
         NodoArbol nodo;
         nodo = buscarNodo(nombre);
@@ -115,4 +120,60 @@ public class Arbol {
 
         return result;
     }
+    
+    /**
+     * Devuelve un array con todos los integrantes de una generacion (Misma profundidad)
+     * @param nombre
+     * @return 
+     */
+    public String[] obtenerMismaGeneracion(String nombre) {
+        NodoArbol nodo = buscarNodo(nombre);
+        if (nodo == null) {
+            return new String[0]; 
+        }
+
+        int nivel = obtenerNivel(nodo, 0); 
+        ListaSimple mismaGeneracion = new ListaSimple();
+        obtenerNodosEnNivel(raiz, nivel, 0, mismaGeneracion);
+
+        // Convertir la lista enlazada a array
+        return mismaGeneracion.aArray();
+    }
+    
+    /**
+     * Obtiene el nivel del Nodo buscado
+     * @param nodo
+     * @param nivelActual
+     * @return 
+     */
+    private int obtenerNivel(NodoArbol nodo, int nivelActual) {
+        if (nodo == null) {
+            return -1; 
+        }
+        if (nodo == raiz) {
+            return nivelActual;
+        }
+        return obtenerNivel(nodo.obtenerPadre(), nivelActual + 1);
+    }
+    
+    /**
+     * agrega a la lista ingresada todos los nodos pertenecientes al mismo nivel objetivo
+     * @param nodo
+     * @param nivelObjetivo
+     * @param nivelActual
+     * @param resultado 
+     */
+    private void obtenerNodosEnNivel(NodoArbol nodo, int nivelObjetivo, int nivelActual, ListaSimple resultado) {
+        if (nodo == null) {
+            return;
+        }
+        if (nivelActual == nivelObjetivo) {
+            resultado.insertarAlPrincipio(nodo.nombre);
+        } else {
+            for (NodoArbol hijo : nodo.obtenerHijos()) {
+                obtenerNodosEnNivel(hijo, nivelObjetivo, nivelActual + 1, resultado);
+            }
+        }
+    }
+
 }

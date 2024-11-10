@@ -98,5 +98,27 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
-    }   
+    }
+    /**
+     * Coloca los elementos de la lista en un array
+     * @return 
+     */
+    public String[] aArray() {
+        int tamanio = 0;
+        Nodo actual = pFirst;
+        while (actual != null) {
+            tamanio++;
+            actual = actual.getSiguiente();
+        }
+
+        String[] resultado = new String[tamanio];
+        actual = pFirst;
+        int index = 0;
+        while (actual != null) {
+            resultado[index++] = actual.getValor().toString();
+            actual = actual.getSiguiente();
+        }
+
+        return resultado;
+    }
 }
