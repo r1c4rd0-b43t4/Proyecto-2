@@ -20,6 +20,7 @@ public class Persona {
     private ListaSimple hijos;
     private String notas;
     private String destino;
+    private int indiceHash;
 
     public Persona(String nombre, String numeral, ListaSimple padres, String mote, String titulo, String conyuge, String color_ojos, String color_pelo, ListaSimple hijos, String notas, String destino) {
         this.nombre = nombre;
@@ -33,6 +34,7 @@ public class Persona {
         this.hijos = hijos;
         this.notas = notas;
         this.destino = destino;
+        this.indiceHash = 0;
     }
 
     /**
@@ -187,6 +189,21 @@ public class Persona {
      */
     public void setDestino(String destino) {
         this.destino = destino;
+    }
+    
+         
+    /**
+     * get indiceHash 
+     */
+    public int getIndiceHash() {
+        return indiceHash;
+    }
+    
+    /**
+     * @param indiceHash the indiceHash to set 
+     */
+    public void setIndiceHash(int indiceHash) {
+        this.indiceHash = indiceHash;
     }
 
     @Override
