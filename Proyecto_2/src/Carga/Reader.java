@@ -1,11 +1,14 @@
 package Carga;
-import Main.*;
+
+import Main.Persona;
+import Main.ListaSimple;
 import java.io.*;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 public class Reader {
@@ -17,6 +20,7 @@ public class Reader {
         StringBuilder texto = new StringBuilder();
         String line;
         File doc_data;
+        ListaSimple ListaPersonas = new ListaSimple();  
 
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter filtro_json = new FileNameExtensionFilter(".json", "json");
@@ -33,7 +37,13 @@ public class Reader {
                             texto.append(line).append("\n");
                         }
                     }
-                    if (texto.length() > 0) {
+
+                    if (!JSONvalido(texto.toString())) {
+                        JOptionPane.showMessageDialog(null, "El archivo JSON no cumple con el formato requerido.");
+                        return null;
+                    }
+
+                    try {
                         Gson gson = new Gson();
                         Map<String, List<Map<String, List<Map<String, Object>>>>> houseMap = gson.fromJson(
                                 texto.toString(),
@@ -42,7 +52,6 @@ public class Reader {
 
                         houseMap.forEach((house, members) -> {
                             System.out.println("House: " + house);
-                            ListaSimple ListaPersonas = new ListaSimple();
                             for (Map<String, List<Map<String, Object>>> member : members) {
                                 member.forEach((name, details) -> {
                                     String nombre = name;
@@ -98,30 +107,37 @@ public class Reader {
                                     }
                                     Persona persona = new Persona(nombre, numeral, padres, mote, titulo, conyuge, color_ojos, color_pelo, hijos, notas, destino);
                                     ListaPersonas.insertarAlFinal(persona);
-                                    
                                 });
-                                return ListaPersonas;
-                                
                             }
                         });
+                        return ListaPersonas;
+                    } catch (JsonSyntaxException e) {
+                        JOptionPane.showMessageDialog(null, "El archivo JSON no es válido: " + e.getMessage());
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Error procesando el archivo JSON: " + e.getMessage());
                     }
+
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(null, "Error durante la lectura del archivo: " + e.getMessage());
-
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe.");
-
             }
         } else {
             JOptionPane.showMessageDialog(null, "No se seleccionó ningún archivo.");
-
         }
         return null;
-        
+    }
+
+    private boolean JSONvalido(String jsonString) {
+        String[] requiredKeys = {"Of his name", "Born to", "Known throughout as", "Held title", "Of eyes", "Of hair", "Father to"};
+        for (String key : requiredKeys) {
+            if (!jsonString.contains(key)) {
+                return false;
+            }
+        }
+        return true;
     }
 
 
 }
-
-
