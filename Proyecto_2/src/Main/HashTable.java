@@ -6,7 +6,7 @@ package Main;
 
 /**
  *
- * @author HP
+ * @author 
  */
 public class HashTable {
     int size;
@@ -38,7 +38,7 @@ public class HashTable {
     
     public void insertarHash(Persona personaObj){
         
-        int ascii = this.returnAsciiCode(personaObj.getTitulo()); 
+        int ascii = this.returnAsciiCode(personaObj.getMote()); // Se usa el mote como prueba
         int indice = this.getIndice(ascii);
         personaObj.setIndiceHash(indice);
         this.arregloHash[indice].insertarAlFinal(personaObj);

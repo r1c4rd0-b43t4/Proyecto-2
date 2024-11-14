@@ -16,6 +16,9 @@ public class Persona {
     private String destino;
     private int indiceHash;
 
+    public Persona() {
+    }
+
     public Persona(String nombre, String numeral, ListaSimple padres, String mote, String titulo, String conyuge, String color_ojos, String color_pelo, ListaSimple hijos, String notas, String destino) {
         this.nombre = nombre;
         this.numeral = numeral;
