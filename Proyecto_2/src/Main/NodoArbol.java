@@ -10,17 +10,17 @@ package Main;
  */
 public class NodoArbol {
 
-    String nombre;
+    Persona persona;
     NodoArbol padre;
     NodoArbol[] hijos;
     int numeroHijos;
 
     /**
      * Constructor NodoArbol
-     * @param nombre 
+     * @param persona 
      */
-    public NodoArbol(String nombre) {
-        this.nombre = nombre;
+    public NodoArbol(Persona persona) {
+        this.persona = persona;
         this.hijos = new NodoArbol[10]; // No sé cuantos serían el máximo en el Json
         this.numeroHijos = 0;
     }
@@ -54,4 +54,14 @@ public class NodoArbol {
         System.arraycopy(hijos, 0, result, 0, numeroHijos);
         return result;
     }
+    
+    /**
+     * Getter de persona
+     * @return 
+     */
+    public Persona getPersona() {
+        return persona;
+    }
+    
+    
 }
