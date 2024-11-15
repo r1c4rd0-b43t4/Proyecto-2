@@ -1,6 +1,6 @@
 
 package Main;
-
+import Main.Persona;
 /**
  *
  * @author 
@@ -9,11 +9,13 @@ public class ListaSimple {
     private Nodo pFirst;
     private Nodo pLast;
     private int size;
+    private ListaSimple personas_encontradas;
 
     public ListaSimple() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
+        this.personas_encontradas = new ListaSimple();
     }
 
     public boolean EsVacio(){
@@ -31,6 +33,10 @@ public class ListaSimple {
     public int getSize() {
         return size;
     }
+
+    public ListaSimple getPersonas_encontradas() {
+        return personas_encontradas;
+    }
     
     public <T> Nodo getValue( T value){
         Nodo aux = this.pFirst;
@@ -42,7 +48,7 @@ public class ListaSimple {
         } 
         return aux;        
     }
-    
+   
     public <T> void insertarAlFinal(T value){
         
         Nodo newNodo = new Nodo();
@@ -95,5 +101,18 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
-    }   
+    } 
+    
+    public void BuscarNombre (String value){
+        
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getMote().equals(value)){
+                this.personas_encontradas.insertarAlFinal((Persona)aux.getValor());
+            }   
+            aux = aux.getSiguiente();  
+        }
+        
+    }
 }
