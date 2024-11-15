@@ -3,7 +3,7 @@ package Main;
 
 /**
  *
- * @author HP
+ * @author 
  */
 public class ListaSimple {
     private Nodo pFirst;
