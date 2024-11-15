@@ -73,6 +73,8 @@ public class BusquedaNombre extends javax.swing.JFrame {
         //this.limpiarPantalla();
         Persona auxPersona;
         Nodo auxNodo;
+        // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
+        // sus descendientes en la clase arbol
         if (!this.NombrePersonaTxt.getText().equals("")){
             for (int i = 0; i < this.hashTableT.getSize(); i++){
                 if (this.hashTableT.getArregloHash()[i] != null){
