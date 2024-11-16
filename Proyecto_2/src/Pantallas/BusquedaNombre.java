@@ -68,7 +68,7 @@ public class BusquedaNombre extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BusquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBtnActionPerformed
-        //this.ComboBox.removeAllItems();
+        this.ComboBox.removeAllItems();
         //this.lista_resumenes.clear();
         //this.limpiarPantalla();
         Persona auxPersona;
@@ -79,14 +79,12 @@ public class BusquedaNombre extends javax.swing.JFrame {
             for (int i = 0; i < this.hashTableT.getSize(); i++){
                 if (this.hashTableT.getArregloHash()[i] != null){
                     //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
-                    this.hashTableT.getArregloHash()[i].BuscarNombre(this.NombrePersonaTxt.getText());
-                    if (this.hashTableT.getArregloHash()[i].getPersonas_encontradas() != null){
-                        auxNodo = this.hashTableT.getArregloHash()[i].getPersonas_encontradas().getpFirst();
-                        while(auxNodo!=null) {
-                            auxPersona = (Persona)auxNodo.getValor();
-                            this.ComboBox.addItem(auxPersona.getNombre());
-                            this.lista_personas.insertarAlFinal(auxPersona);
-                        }
+                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombre(this.NombrePersonaTxt.getText());
+                    if (auxPersona != null){
+                        this.ComboBox.addItem(auxPersona.getNombre());
+                        
+                        
+                        //this.lista_personas.insertarAlFinal(auxPersona);
                         /*for (int n = 0; n < this.hashTableT.getArregloHash()[i].getPersonas_encontradas().getSize(); n++){
                             auxNodo = this.hashTableT.getArregloHash()[i].getPersonas_encontradas().get(n);
                             this.ComboBox.addItem(auxResumen.getTitulo());

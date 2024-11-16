@@ -15,7 +15,7 @@ public class ListaSimple {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
-        this.personas_encontradas = new ListaSimple();
+        this.personas_encontradas = null;
     }
 
     public boolean EsVacio(){
@@ -103,16 +103,25 @@ public class ListaSimple {
         }
     } 
     
-    public void BuscarNombre (String value){
-        
+    public Persona BuscarNombre (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona auxPersona = new Persona();
         Nodo aux = this.pFirst;
         while (aux != null){
             Persona res = (Persona) aux.getValor();
-            if (res.getMote().equals(value)){
-                this.personas_encontradas.insertarAlFinal((Persona)aux.getValor());
+            if (res.getNombre().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                return auxPersona;
             }   
             aux = aux.getSiguiente();  
         }
+        return auxPersona;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
         
     }
 }
