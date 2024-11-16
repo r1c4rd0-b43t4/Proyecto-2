@@ -124,4 +124,23 @@ public class ListaSimple {
         }*/
         
     }
+    
+    public String[] aArray() {
+        int tamanio = 0;
+        Nodo actual = pFirst;
+        while (actual != null) {
+            tamanio++;
+            actual = actual.getSiguiente();
+        }
+
+        String[] resultado = new String[tamanio];
+        actual = pFirst;
+        int index = 0;
+        while (actual != null) {
+            resultado[index++] = actual.getValor().toString();
+            actual = actual.getSiguiente();
+        }
+
+        return resultado;
+    }
 }

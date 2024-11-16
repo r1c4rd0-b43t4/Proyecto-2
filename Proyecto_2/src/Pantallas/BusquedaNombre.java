@@ -6,6 +6,8 @@ package Pantallas;
 import Main.ListaSimple;
 import Main.HashTable;
 import Main.Nodo;
+import Main.Arbol;
+import Main.NodoArbol;
 import Main.Persona;
 import javax.swing.JOptionPane;
 
@@ -15,13 +17,15 @@ import javax.swing.JOptionPane;
  */
 public class BusquedaNombre extends javax.swing.JFrame {
     static HashTable hashTableT;
+    static Arbol arbolPrincipal;
     private ListaSimple lista_personas;
     /**
      * Creates new form BusquedaNombre
      */
-    public BusquedaNombre(HashTable hashTableT) {
+    public BusquedaNombre(HashTable hashTableT, Arbol arbolPrincipal ) {
         initComponents();
         this.hashTableT = hashTableT;
+        this.arbolPrincipal = arbolPrincipal;
         this.lista_personas = new ListaSimple();
         
     }
@@ -41,6 +45,7 @@ public class BusquedaNombre extends javax.swing.JFrame {
         ComboBox = new javax.swing.JComboBox<>();
         NombrePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        BusquedaArbolBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -48,13 +53,13 @@ public class BusquedaNombre extends javax.swing.JFrame {
         jLabel1.setText("Busqueda por Nombre");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
-        BusquedaBtn.setText("Buscar");
+        BusquedaBtn.setText("Buscar HashTable");
         BusquedaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, -1, -1));
+        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
 
         jButton2.setText("Atrás");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
@@ -64,6 +69,14 @@ public class BusquedaNombre extends javax.swing.JFrame {
         jLabel2.setText("Ingrese el nombre de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
+        BusquedaArbolBtn.setText("Buscar Arbol");
+        BusquedaArbolBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BusquedaArbolBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -72,7 +85,7 @@ public class BusquedaNombre extends javax.swing.JFrame {
         //this.lista_resumenes.clear();
         //this.limpiarPantalla();
         Persona auxPersona;
-        Nodo auxNodo;
+        //Nodo auxNodo;
         // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
         // sus descendientes en la clase arbol
         if (!this.NombrePersonaTxt.getText().equals("")){
@@ -99,9 +112,14 @@ public class BusquedaNombre extends javax.swing.JFrame {
             }
         }
         else{
-            JOptionPane.showMessageDialog(null, "Debe ingresar alguna palabra clave" );
+            JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona" );
         }
     }//GEN-LAST:event_BusquedaBtnActionPerformed
+
+    private void BusquedaArbolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaArbolBtnActionPerformed
+        this.ComboBox.removeAllItems();
+        
+    }//GEN-LAST:event_BusquedaArbolBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,12 +151,13 @@ public class BusquedaNombre extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BusquedaNombre(hashTableT).setVisible(true);
+                new BusquedaNombre(hashTableT, arbolPrincipal).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BusquedaArbolBtn;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JTextField NombrePersonaTxt;

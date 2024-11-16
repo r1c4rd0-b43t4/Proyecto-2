@@ -20,7 +20,10 @@ public class Main {
             aux = aux.getSiguiente();
         }
         
-        BusquedaNombre pantallaBusqueda = new BusquedaNombre(tablaHash);
-        pantallaBusqueda.setVisible(true);
+        // Prueba carga Arbol
+        
+        
+        //BusquedaNombre pantallaBusqueda = new BusquedaNombre(tablaHash);
+        //pantallaBusqueda.setVisible(true);
     }
 }
