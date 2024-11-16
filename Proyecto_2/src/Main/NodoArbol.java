@@ -10,7 +10,7 @@ package Main;
  */
 public class NodoArbol {
 
-    Persona persona;
+    private Persona persona;
     NodoArbol padre;
     NodoArbol[] hijos;
     int numeroHijos;
@@ -62,6 +62,15 @@ public class NodoArbol {
     public Persona getPersona() {
         return persona;
     }
+
+    /**
+     * @param persona the persona to set
+     */
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+    
+    
     
     
 }

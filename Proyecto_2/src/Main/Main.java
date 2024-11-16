@@ -5,25 +5,24 @@ import Pantallas.BusquedaNombre;
 public class Main {
 
     public static void main(String[] args) {
-        // Prueba de carga HashTable
+        
         ListaSimple lista_personas = new ListaSimple();
         HashTable tablaHash = new HashTable();
-        Nodo aux = new Nodo();
         Reader reader = new Reader();
         lista_personas = reader.Read();
-        aux = lista_personas.getpFirst();
-        Persona personaObj = new Persona();
-        while (aux != null){
-            personaObj = (Persona)aux.getValor();
-            tablaHash.insertarHash(personaObj);
-            System.out.println(personaObj.getNombre());
-            aux = aux.getSiguiente();
-        }
+        // Prueba de carga HashTable
+        tablaHash.CargarHashTable(lista_personas);
         
         // Prueba carga Arbol
+        Arbol arbolPrincipal = new Arbol();
+        //arbolPrincipal.CargarArbol(lista_personas);
         
+        //Prueba Busqueda Nombre
+        BusquedaNombre pantallaBusqueda = new BusquedaNombre(tablaHash, arbolPrincipal);
+        pantallaBusqueda.setVisible(true);
+    }
+    
+    public void CrearArbol(Nodo aux, Persona personaObj){
         
-        //BusquedaNombre pantallaBusqueda = new BusquedaNombre(tablaHash);
-        //pantallaBusqueda.setVisible(true);
     }
 }

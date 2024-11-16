@@ -56,5 +56,17 @@ public class HashTable {
     public int getIndice(int codigoAscii){
         int hashCode = codigoAscii % this.arregloHash.length;
         return hashCode;    
-    }   
+    }
+    
+    public void CargarHashTable(ListaSimple lista_personas){
+        Nodo aux = new Nodo();
+        aux = lista_personas.getpFirst();
+        Persona personaObj = new Persona();
+        while (aux != null){
+            personaObj = (Persona)aux.getValor();
+            this.insertarHash(personaObj);
+            System.out.println(personaObj.getNombre());
+            aux = aux.getSiguiente();
+        }
+    }
 }

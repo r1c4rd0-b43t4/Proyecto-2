@@ -18,6 +18,10 @@ public class Arbol {
     public Arbol(Persona personaRaiz) {
         this.raiz = new NodoArbol(personaRaiz);
     }
+
+    public Arbol() {
+        this.raiz = null;
+    }
     
     /**
      * Metodo para buscar solo por persona
@@ -193,6 +197,22 @@ public class Arbol {
             buscarPorTituloNobiliario(hijo, titulo, resultado);
         }
     }
+    
+    /*public void CargarArbol(ListaSimple lista_personas){
+        // Incompleto
+        Nodo primero = lista_personas.getpFirst();
+        this.raiz = new NodoArbol((Persona)primero.getValor());
+        
+        NodoArbol[] listaHijos = this.obtenerHijos((Persona)primero.getValor());
+        
+        for(int i = 0; i < listaHijos.length;i++){
+            Persona auxPersona = listaHijos[i].getPersona();
+            NodoArbol auxHijo = new NodoArbol(auxPersona);
+            while (auxHijo != null){
+                this.raiz.agregarHijo(auxHijo);
+            }
+        }
+    }*/
     
 
 }
