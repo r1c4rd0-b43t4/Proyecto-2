@@ -1,5 +1,6 @@
 package Main;
 import Carga.Reader;
+import Pantallas.BusquedaNombre;
 
 public class Main {
 
@@ -18,5 +19,11 @@ public class Main {
             System.out.println(personaObj.getNombre());
             aux = aux.getSiguiente();
         }
+        
+        // Prueba carga Arbol
+        
+        
+        //BusquedaNombre pantallaBusqueda = new BusquedaNombre(tablaHash);
+        //pantallaBusqueda.setVisible(true);
     }
 }

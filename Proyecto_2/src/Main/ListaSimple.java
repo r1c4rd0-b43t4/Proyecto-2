@@ -1,9 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package Main;
 
+package Main;
+import Main.Persona;
 /**
  *
  * @author 
@@ -12,11 +9,13 @@ public class ListaSimple {
     private Nodo pFirst;
     private Nodo pLast;
     private int size;
+    private ListaSimple personas_encontradas;
 
     public ListaSimple() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
+        this.personas_encontradas = null;
     }
 
     public boolean EsVacio(){
@@ -34,6 +33,10 @@ public class ListaSimple {
     public int getSize() {
         return size;
     }
+
+    public ListaSimple getPersonas_encontradas() {
+        return personas_encontradas;
+    }
     
     public <T> Nodo getValue( T value){
         Nodo aux = this.pFirst;
@@ -45,7 +48,7 @@ public class ListaSimple {
         } 
         return aux;        
     }
-    
+   
     public <T> void insertarAlFinal(T value){
         
         Nodo newNodo = new Nodo();
@@ -98,11 +101,30 @@ public class ListaSimple {
             System.out.println(aux.getValor().toString());
             aux = aux.getSiguiente();
         }
+    } 
+    
+    public Persona BuscarNombre (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona auxPersona = new Persona();
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getNombre().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                return auxPersona;
+            }   
+            aux = aux.getSiguiente();  
+        }
+        return auxPersona;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
     }
-    /**
-     * Coloca los elementos de la lista en un array
-     * @return 
-     */
+    
     public String[] aArray() {
         int tamanio = 0;
         Nodo actual = pFirst;
