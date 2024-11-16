@@ -20,7 +20,8 @@ public class Reader {
         StringBuilder texto = new StringBuilder();
         String line;
         File doc_data;
-        ListaSimple ListaPersonas = new ListaSimple();  
+        ListaSimple ListaPersonas = new ListaSimple(); 
+
 
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter filtro_json = new FileNameExtensionFilter(".json", "json");
@@ -51,7 +52,7 @@ public class Reader {
                         );
 
                         houseMap.forEach((house, members) -> {
-                            System.out.println("House: " + house);
+                            String casa = house.toString();
                             for (Map<String, List<Map<String, Object>>> member : members) {
                                 member.forEach((name, details) -> {
                                     String nombre = name;
@@ -107,18 +108,22 @@ public class Reader {
                                     }
                                     Persona persona = new Persona(nombre, numeral, padres, mote, titulo, conyuge, color_ojos, color_pelo, hijos, notas, destino);
                                     ListaPersonas.insertarAlFinal(persona);
+
                                 });
+                                
                             }
+                            JOptionPane.showMessageDialog(null, casa + " ha sido cargada.");
                         });
+                        
                         return ListaPersonas;
                     } catch (JsonSyntaxException e) {
-                        JOptionPane.showMessageDialog(null, "El archivo JSON no es válido: " + e.getMessage());
+                        JOptionPane.showMessageDialog(null, "El archivo JSON no es válido: ");
                     } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Error procesando el archivo JSON: " + e.getMessage());
+                        JOptionPane.showMessageDialog(null, "Error procesando el archivo JSON: ");
                     }
 
                 } catch (IOException e) {
-                    JOptionPane.showMessageDialog(null, "Error durante la lectura del archivo: " + e.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error durante la lectura del archivo: ");
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "El archivo seleccionado no existe.");
