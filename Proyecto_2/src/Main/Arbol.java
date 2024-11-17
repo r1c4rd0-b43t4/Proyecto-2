@@ -18,10 +18,6 @@ public class Arbol {
     public Arbol(Persona personaRaiz) {
         this.raiz = new NodoArbol(personaRaiz);
     }
-
-    public Arbol() {
-        this.raiz = null;
-    }
     
     /**
      * Metodo para buscar solo por persona
@@ -197,4 +193,35 @@ public class Arbol {
             buscarPorTituloNobiliario(hijo, titulo, resultado);
         }
     }
+    
+    /**
+     * Crea un subarbol manteniendo la misma estructura del arbol original pero con la persona que se le pasa como nodo raiz
+     * @param persona
+     * @return 
+     */
+    public Arbol crearSubArbol(Persona persona) {
+        NodoArbol Raiznueva = buscarNodo(persona);
+        if (Raiznueva != null) {
+            Arbol subArbol = new Arbol(Raiznueva.getPersona());
+            copiarDescendientes(Raiznueva, subArbol.raiz);
+            return subArbol;
+        } else {
+            //No se encuentra ese miembro en el arbol
+            return null;
+        }
+    }
+   
+    /**
+     * metodo recursivo para mantener la jerarquia del arbol original en el subarbol, se pasan un nodooriginal y un nodocopia para así recorrer el arbol original, mientras se crean nodosarbol que se añaden al subarbol
+     * @param nodoOriginal
+     * @param nodoCopia 
+     */
+    private void copiarDescendientes(NodoArbol nodoOriginal, NodoArbol nodoCopia) {
+        for (NodoArbol hijoOriginal : nodoOriginal.obtenerHijos()) {
+            NodoArbol hijoCopia = new NodoArbol(hijoOriginal.getPersona());
+            nodoCopia.agregarHijo(hijoCopia);
+            copiarDescendientes(hijoOriginal, hijoCopia);
+        }
+    }
+
 }
