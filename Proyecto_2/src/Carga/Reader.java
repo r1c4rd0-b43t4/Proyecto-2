@@ -52,6 +52,8 @@ public class Reader {
 
                         houseMap.forEach((house, members) -> {
                             System.out.println("House: " + house);
+                            int indice = house.lastIndexOf(" ");
+                            String apellido = house.substring(indice);
                             for (Map<String, List<Map<String, Object>>> member : members) {
                                 member.forEach((name, details) -> {
                                     String nombre = name;
@@ -105,7 +107,7 @@ public class Reader {
                                             }
                                         }
                                     }
-                                    Persona persona = new Persona(nombre, numeral, padres, mote, titulo, conyuge, color_ojos, color_pelo, hijos, notas, destino);
+                                    Persona persona = new Persona(nombre, apellido, numeral, padres, mote, titulo, conyuge, color_ojos, color_pelo, hijos, notas, destino);
                                     ListaPersonas.insertarAlFinal(persona);
                                 });
                             }

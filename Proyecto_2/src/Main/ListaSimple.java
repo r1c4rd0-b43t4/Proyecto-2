@@ -125,6 +125,28 @@ public class ListaSimple {
         
     }
     
+    public Persona BuscarMote (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona auxPersona = new Persona();
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getMote().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                return auxPersona;
+            }   
+            aux = aux.getSiguiente();  
+        }
+        return auxPersona;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
     public String[] aArray() {
         int tamanio = 0;
         Nodo actual = pFirst;

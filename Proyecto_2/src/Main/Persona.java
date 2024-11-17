@@ -4,6 +4,7 @@ package Main;
 
 public class Persona {
     private String nombre;
+    private String apellido;
     private String numeral;
     private ListaSimple padres;
     private String mote;
@@ -19,8 +20,9 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String numeral, ListaSimple padres, String mote, String titulo, String conyuge, String color_ojos, String color_pelo, ListaSimple hijos, String notas, String destino) {
+    public Persona(String nombre, String apellido, String numeral, ListaSimple padres, String mote, String titulo, String conyuge, String color_ojos, String color_pelo, ListaSimple hijos, String notas, String destino) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.numeral = numeral;
         this.padres = padres;
         this.mote = mote;
@@ -206,6 +208,13 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", numeral=" + numeral + ", padres=" + padres + ", mote=" + mote + ", titulo=" + titulo + ", conyuge=" + conyuge + ", color_ojos=" + color_ojos + ", color_pelo=" + color_pelo + ", hijos=" + hijos + ", notas=" + notas + ", destino=" + destino + '}';
+    }
+
+    /**
+     * @return the apellido
+     */
+    public String getApellido() {
+        return apellido;
     }
     
     

@@ -20,6 +20,12 @@ public class Arbol {
     }
     
     /**
+     * Constructor
+     */
+    public Arbol() {
+    }
+    
+    /**
      * Metodo para buscar solo por persona
      * @param persona
      * @return 
