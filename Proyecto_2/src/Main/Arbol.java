@@ -18,7 +18,50 @@ public class Arbol {
     public Arbol(Persona personaRaiz) {
         this.raiz = new NodoArbol(personaRaiz);
     }
-    
+    /**
+     * Metodo que construye el arbol genealogico, crea una listaNodos con las Personas del arbol, luego establece las relaciones entre ellos, para luego identificar la raiz
+     * @param listaPersonas 
+     */
+    public void construirArbol(ListaSimple<Persona> listaPersonas) {
+        ListaSimple<NodoArbol> listaNodos = new ListaSimple<>();
+
+        Nodo<Persona> actual = listaPersonas.getpFirst();
+        while (actual != null) {
+            NodoArbol nodo = new NodoArbol(actual.getValor());
+            listaNodos.insertarAlFinal(nodo);
+            actual = actual.getSiguiente();
+        }
+
+        Nodo<NodoArbol> actualNodo = listaNodos.getpFirst();
+        while (actualNodo != null) {
+            NodoArbol nodo = actualNodo.getValor();
+            Persona persona = nodo.getPersona();
+
+            Nodo<String> padreActual = persona.getPadres().getpFirst();
+            while (padreActual != null) {
+                Persona padrePersona = listaPersonas.BuscarNombre(padreActual.getValor());
+                if (padrePersona != null) {
+                    NodoArbol nodoPadre = buscarNodo(padrePersona);
+                    if (nodoPadre != null) {
+                        nodoPadre.agregarHijo(nodo);
+                    }
+                }
+                padreActual = padreActual.getSiguiente();
+            }
+            actualNodo = actualNodo.getSiguiente();
+        }
+
+        actualNodo = listaNodos.getpFirst();
+        while (actualNodo != null) {
+            NodoArbol nodo = actualNodo.getValor();
+            if (nodo.obtenerPadre() == null) {
+                this.raiz = nodo;
+                break;
+            }
+            actualNodo = actualNodo.getSiguiente();
+        }
+    }
+     
     /**
      * Metodo para buscar solo por persona
      * @param persona
