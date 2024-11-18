@@ -4,20 +4,30 @@ package UI;
 import Carga.Reader;
 import Main.ListaSimple;
 import javax.swing.JOptionPane;
-
+import Main.HashTable;
+import Main.Arbol;
+import Main.NodoArbol;
+import Main.Persona;
  /**
  *
  * @author rdbae
  */
 public class UI_Menu_Principal extends javax.swing.JFrame {
-
+    static HashTable hashTablePrincipal;
+    static Arbol arbolPrincipal;
+    static ListaSimple personas;
     /**
      * Creates new form UI_Inicio
+     * @param lista_personas
+     * @param hashTablePrincipal_Param
+     * @param arbolPrincipal_Param
      */
-    static ListaSimple personas;
-    public UI_Menu_Principal(ListaSimple personas) {
-        this.personas = personas;
+    public UI_Menu_Principal(ListaSimple lista_personas, HashTable hashTablePrincipal_Param, Arbol arbolPrincipal_Param) {
         initComponents();
+        personas = lista_personas;
+        hashTablePrincipal = hashTablePrincipal_Param;
+        arbolPrincipal = arbolPrincipal_Param;
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -128,7 +138,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
-
+    
     }//GEN-LAST:event_CargarJSONActionPerformed
 
     private void CargarJSON1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON1ActionPerformed
@@ -197,7 +207,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_Menu_Principal(personas).setVisible(true);
+                new UI_Menu_Principal(personas, hashTablePrincipal, arbolPrincipal).setVisible(true);
             }
         });
     }

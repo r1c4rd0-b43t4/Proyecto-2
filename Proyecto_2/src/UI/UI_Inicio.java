@@ -3,7 +3,11 @@
 package UI;
 import Carga.Reader;
 import Main.ListaSimple;
-import Main.ListaSimple;
+import Main.Arbol;
+import Main.NodoArbol;
+import Main.HashTable;
+import Main.Nodo;
+import Main.Persona;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,13 +16,16 @@ import javax.swing.JOptionPane;
  */
 public class UI_Inicio extends javax.swing.JFrame {
     static ListaSimple personas;
-
+    static HashTable hashTablePrincipal;
+    static Arbol arbolPrincipal;
     /**
      * Creates new form UI_Inicio
      */
     public UI_Inicio() {
-        personas = new ListaSimple();
         initComponents();
+        this.personas = new ListaSimple();
+        this.arbolPrincipal = new Arbol();
+        this.hashTablePrincipal = new HashTable();    
     }
 
     /**
@@ -78,11 +85,13 @@ public class UI_Inicio extends javax.swing.JFrame {
         if(personas ==  null){
             throw new Exception("Error durante la carga");  
         }
-          
+        
+        hashTablePrincipal.CargarHashTable(personas);
+        arbolPrincipal.construirArbol(personas);
         JOptionPane.showMessageDialog(this, "La carga fue un exito");  
 
         this.setVisible(false);
-        UI_Menu_Principal ui = new UI_Menu_Principal(personas);
+        UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTablePrincipal, arbolPrincipal);
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
         }
@@ -90,7 +99,7 @@ public class UI_Inicio extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error durante la carga");  
         }  
     }//GEN-LAST:event_CargarJSONActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
