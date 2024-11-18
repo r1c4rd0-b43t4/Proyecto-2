@@ -5,9 +5,9 @@ import Main.Persona;
  *
  * @author 
  */
-public class ListaSimple {
-    private Nodo pFirst;
-    private Nodo pLast;
+public class ListaSimple<T> {
+    private Nodo <T> pFirst;
+    private Nodo <T> pLast;
     private int size;
     private ListaSimple personas_encontradas;
 
@@ -22,11 +22,11 @@ public class ListaSimple {
         return (pFirst == null);   
     }
 
-    public Nodo getpFirst() {
+    public Nodo <T> getpFirst() {
         return pFirst;
     }
 
-    public Nodo getpLast() {
+    public Nodo <T> getpLast() {
         return pLast;
     }
 
@@ -34,11 +34,11 @@ public class ListaSimple {
         return size;
     }
 
-    public ListaSimple getPersonas_encontradas() {
+    public ListaSimple <T> getPersonas_encontradas() {
         return personas_encontradas;
     }
     
-    public <T> Nodo getValue( T value){
+    public Nodo <T> getValue( T value){
         Nodo aux = this.pFirst;
         while (aux != null){
             if (aux.getValor().equals(value))
@@ -49,7 +49,7 @@ public class ListaSimple {
         return aux;        
     }
    
-    public <T> void insertarAlFinal(T value){
+    public void insertarAlFinal(T value){
         
         Nodo newNodo = new Nodo();
         newNodo.setValor(value);
@@ -65,7 +65,7 @@ public class ListaSimple {
         this.size += 1;
     }
     
-    public <T> void insertarAlPrincipio(T value){
+    public  void insertarAlPrincipio(T value){
         Nodo newNodo = new Nodo();
         newNodo.setValor(value);
         if (this.EsVacio()){
@@ -76,7 +76,7 @@ public class ListaSimple {
         this.size += 1;
     }
     
-    public <T> void eliminar (T value){
+    public void eliminar (T value){
         Nodo ant = null;
         Nodo aux = this.pFirst;
         while (aux != null){
