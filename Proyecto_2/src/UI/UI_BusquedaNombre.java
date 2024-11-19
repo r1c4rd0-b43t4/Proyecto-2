@@ -136,7 +136,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         BusquedaBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Menu = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
         MotePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -144,12 +144,13 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Busqueda por Mote");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        jLabel1.setText("Busqueda por Nombre");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, -1, -1));
 
         BusquedaBtn.setBackground(new java.awt.Color(204, 204, 204));
         BusquedaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -162,23 +163,23 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         });
         getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, 40));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Volver");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Menu.setBackground(new java.awt.Color(204, 204, 204));
+        Menu.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        Menu.setForeground(new java.awt.Color(0, 0, 0));
+        Menu.setText("Volver");
+        Menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                MenuActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 40));
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 40));
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 230, 40));
         getContentPane().add(MotePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 230, 40));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingrese el mote de la persona a buscar:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
+        jLabel2.setText("Ingrese el Nombre de la persona a buscar:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
         BusquedaArbolBtn.setBackground(new java.awt.Color(204, 204, 204));
         BusquedaArbolBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -214,9 +215,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BusquedaArbolBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void MenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuActionPerformed
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_MenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -258,8 +260,8 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JButton BusquedaArbolBtn;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
+    private javax.swing.JButton Menu;
     private javax.swing.JTextField MotePersonaTxt;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -4,8 +4,8 @@ package UI;
 import Carga.Reader;
 import Main.ListaSimple;
 import javax.swing.JOptionPane;
-import Main.HashTable;
-import Main.Arbol;
+import Main.*;
+
 import Main.NodoArbol;
 import Main.Persona;
  /**
@@ -38,7 +38,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         CargarJSON = new javax.swing.JButton();
         CargarJSON1 = new javax.swing.JButton();
         nuevoJSON = new javax.swing.JButton();
-        CargarJSON3 = new javax.swing.JButton();
+        VerRegistro = new javax.swing.JButton();
         CargarJSON5 = new javax.swing.JButton();
         CargarJSON6 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -84,17 +84,17 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         });
         jPanel1.add(nuevoJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, 190, 50));
 
-        CargarJSON3.setBackground(new java.awt.Color(204, 204, 204));
-        CargarJSON3.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        CargarJSON3.setForeground(new java.awt.Color(0, 0, 0));
-        CargarJSON3.setText("Ver Registro");
-        CargarJSON3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        CargarJSON3.addActionListener(new java.awt.event.ActionListener() {
+        VerRegistro.setBackground(new java.awt.Color(204, 204, 204));
+        VerRegistro.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        VerRegistro.setForeground(new java.awt.Color(0, 0, 0));
+        VerRegistro.setText("Ver Registro");
+        VerRegistro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        VerRegistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarJSON3ActionPerformed(evt);
+                VerRegistroActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarJSON3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 190, 50));
+        jPanel1.add(VerRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 190, 50));
 
         CargarJSON5.setBackground(new java.awt.Color(204, 204, 204));
         CargarJSON5.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -139,6 +139,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
 
     private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
         UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
     }//GEN-LAST:event_CargarJSONActionPerformed
 
@@ -165,9 +166,15 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nuevoJSONActionPerformed
 
-    private void CargarJSON3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CargarJSON3ActionPerformed
+    private void VerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroActionPerformed
+        Arbol arbol = new Arbol();
+        arbol.construirArbol(personas);
+        ArbolGraphStream arbolgt = new ArbolGraphStream(arbol);
+        arbolgt.mostrar();
+                
+      
+        
+    }//GEN-LAST:event_VerRegistroActionPerformed
 
     private void CargarJSON5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON5ActionPerformed
         // TODO add your handling code here:
@@ -216,9 +223,9 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarJSON;
     private javax.swing.JButton CargarJSON1;
-    private javax.swing.JButton CargarJSON3;
     private javax.swing.JButton CargarJSON5;
     private javax.swing.JButton CargarJSON6;
+    private javax.swing.JButton VerRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton nuevoJSON;
