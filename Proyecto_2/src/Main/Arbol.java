@@ -36,7 +36,8 @@ public class Arbol {
         while (actualNodo != null) {
             NodoArbol nodo = actualNodo.getValor();
             Persona persona = nodo.getPersona();
-
+            
+            
             Nodo<String> padreActual = persona.getPadres().getpFirst();
             while (padreActual != null) {
                 Persona padrePersona = listaPersonas.BuscarNombre(padreActual.getValor());
@@ -54,11 +55,20 @@ public class Arbol {
         actualNodo = listaNodos.getpFirst();
         while (actualNodo != null) {
             NodoArbol nodo = actualNodo.getValor();
-            if (nodo.obtenerPadre() == null) {
-                this.raiz = nodo;
-                break;
+            Persona persona= nodo.getPersona();
+            Nodo<String> padreActual = persona.getPadres().getpFirst();
+            boolean esRaiz =false;
+            while(padreActual != null){
+                if(padreActual.getValor().equals("[Unknown]")){
+                    esRaiz = true;
+                    break;
+                }
+                padreActual = padreActual.getSiguiente();
             }
-            actualNodo = actualNodo.getSiguiente();
+            if(esRaiz){
+                this.raiz = nodo;
+            }
+            actualNodo = actualNodo.getSiguiente().getSiguiente();
         }
     }
      
