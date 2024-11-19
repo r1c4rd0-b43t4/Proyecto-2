@@ -37,21 +37,47 @@ public class Arbol {
             NodoArbol nodo = actualNodo.getValor();
             Persona persona = nodo.getPersona();
             
-            
+            //arreglar
             Nodo<String> padreActual = persona.getPadres().getpFirst();
-            while (padreActual != null) {
-                Persona padrePersona = listaPersonas.BuscarNombre(padreActual.getValor());
-                if (padrePersona != null) {
-                    NodoArbol nodoPadre = buscarNodo(padrePersona);
-                    if (nodoPadre != null) {
-                        nodoPadre.agregarHijo(nodo);
-                    }
-                }
-                padreActual = padreActual.getSiguiente();
-            }
-            actualNodo = actualNodo.getSiguiente();
-        }
+            if (padreActual != null && !padreActual.getValor().equals("[Unknown]")) {
+            String nombrePadre = padreActual.getValor();
+            Persona padrePersona = null;
 
+            // Buscar persona por nombre
+            Nodo<Persona> nodoPersona = listaPersonas.getpFirst();
+            while (nodoPersona != null) {
+                Persona posiblePadre = nodoPersona.getValor();
+                String nombrePersonaCompleto = posiblePadre.getNombre() + ", " + posiblePadre.getNumeral() + " of his name";
+                if (nombrePersonaCompleto.equals(nombrePadre)) {
+                    padrePersona = posiblePadre;
+                    break;
+                }
+                nodoPersona = nodoPersona.getSiguiente();
+            }
+
+            // Si no se encuentra por nombre busca por mote
+            if (padrePersona == null) {
+                nodoPersona = listaPersonas.getpFirst();
+                while (nodoPersona != null) {
+                    Persona posiblePadre = nodoPersona.getValor();
+                    if (posiblePadre.getMote() != null && posiblePadre.getMote().equals(nombrePadre)) {
+                        padrePersona = posiblePadre;
+                        break;
+                    }
+                    nodoPersona = nodoPersona.getSiguiente();
+                }
+            }
+
+            if (padrePersona != null) {
+                NodoArbol nodoPadre = buscarNodo(padrePersona);
+                if (nodoPadre != null) {
+                    nodoPadre.agregarHijo(nodo);
+                }
+            }
+        }
+        actualNodo = actualNodo.getSiguiente();
+        }
+        
         actualNodo = listaNodos.getpFirst();
         while (actualNodo != null) {
             NodoArbol nodo = actualNodo.getValor();
