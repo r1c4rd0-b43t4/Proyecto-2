@@ -12,6 +12,7 @@ public class ArbolGraphStream implements Runnable {
     private boolean loop = true;
 
     public ArbolGraphStream(Arbol arbol) {
+        System.setProperty("org.graphstream.ui", "swing");
         this.graph = new SingleGraph("Arbol Genealógico");
         construirGrafo(arbol.getRaiz());
     }
@@ -82,23 +83,4 @@ public class ArbolGraphStream implements Runnable {
         }
     }
 
-    public static void main(String[] args) {
-        // Crear lista de personas y construir el árbol
-        ListaSimple<Persona> listaPersonas = new ListaSimple<>();
-        Persona personaRaiz = new Persona("Raíz", "Apellido", "1", new ListaSimple<>(), "Mote", "Título", "Conyuge", "Azul", "Negro", new ListaSimple<>(), "Notas", "Destino");
-        listaPersonas.insertarAlFinal(personaRaiz);
-
-        // Agregar más personas a la lista y establecer sus relaciones
-        // Ejemplo:
-        // Persona persona1 = new Persona("Hijo 1", "Apellido", "2", new ListaSimple<>(), "Mote", "Título", "Conyuge", "Verde", "Castaño", new ListaSimple<>(), "Notas", "Destino");
-        // listaPersonas.insertarAlFinal(persona1);
-        // Persona persona2 = new Persona("Hijo 2", "Apellido", "3", new ListaSimple<>(), "Mote", "Título", "Conyuge", "Marrón", "Rubio", new ListaSimple<>(), "Notas", "Destino");
-        // listaPersonas.insertarAlFinal(persona2);
-
-        Arbol arbolGenealogico = new Arbol();
-        arbolGenealogico.construirArbol(listaPersonas);
-
-        ArbolGraphStream arbolGraphStream = new ArbolGraphStream(arbolGenealogico);
-        arbolGraphStream.mostrar();
-    }
 }

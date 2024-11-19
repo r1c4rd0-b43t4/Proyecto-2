@@ -139,6 +139,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
 
     private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
         UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal);
+        pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
     }//GEN-LAST:event_CargarJSONActionPerformed
 
@@ -169,6 +170,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         Arbol arbol = new Arbol();
         arbol.construirArbol(personas);
         ArbolGraphStream arbolgt = new ArbolGraphStream(arbol);
+        arbolgt.mostrar();
                 
       
         
