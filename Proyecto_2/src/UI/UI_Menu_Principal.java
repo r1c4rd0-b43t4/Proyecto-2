@@ -156,7 +156,12 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
           if(lista ==  null){
               throw new Exception("Error durante la carga");  
           }
+          
           personas = lista;
+          hashTablePrincipal.CargarHashTable(lista);
+          arbolPrincipal.construirArbol(lista);
+          
+                  
           
           JOptionPane.showMessageDialog(this, "La carga fue un exito");  
 
