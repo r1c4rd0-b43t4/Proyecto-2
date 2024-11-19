@@ -9,7 +9,7 @@ package Main;
  * @author reneb
  */
 public class Arbol {
-    private NodoArbol raiz;
+    NodoArbol raiz;
     
     /**
      * Constructor
@@ -32,53 +32,34 @@ public class Arbol {
             actual = actual.getSiguiente();
         }
 
-       this.setRaiz(listaNodos.getpFirst().getValor());
         Nodo<NodoArbol> actualNodo = listaNodos.getpFirst();
         while (actualNodo != null) {
             NodoArbol nodo = actualNodo.getValor();
             Persona persona = nodo.getPersona();
-            
-            //arreglar
+
             Nodo<String> padreActual = persona.getPadres().getpFirst();
-            if (padreActual != null && !padreActual.getValor().equals("[Unknown]")) {
-            String nombrePadre = padreActual.getValor();
-            Persona padrePersona = null;
-
-            // Buscar persona por nombre
-            Nodo<Persona> nodoPersona = listaPersonas.getpFirst();
-            while (nodoPersona != null) {
-                Persona posiblePadre = nodoPersona.getValor();
-                String nombrePersonaCompleto = posiblePadre.getNombre() + ", " + posiblePadre.getNumeral() + " of his name";
-                if (nombrePersonaCompleto.equals(nombrePadre)) {
-                    padrePersona = posiblePadre;
-                    break;
-                }
-                nodoPersona = nodoPersona.getSiguiente();
-            }
-
-            // Si no se encuentra por nombre busca por mote
-            if (padrePersona == null) {
-                nodoPersona = listaPersonas.getpFirst();
-                while (nodoPersona != null) {
-                    Persona posiblePadre = nodoPersona.getValor();
-                    if (posiblePadre.getMote() != null && posiblePadre.getMote().equals(nombrePadre)) {
-                        padrePersona = posiblePadre;
-                        break;
+            while (padreActual != null) {
+                Persona padrePersona = listaPersonas.BuscarNombreIndividual(padreActual.getValor());
+                if (padrePersona != null) {
+                    NodoArbol nodoPadre = buscarNodo(padrePersona);
+                    if (nodoPadre != null) {
+                        nodoPadre.agregarHijo(nodo);
                     }
-                    nodoPersona = nodoPersona.getSiguiente();
                 }
+                padreActual = padreActual.getSiguiente();
             }
-
-            if (padrePersona != null) {
-                NodoArbol nodoPadre = buscarNodo(padrePersona);
-                if (nodoPadre != null) {
-                    nodoPadre.agregarHijo(nodo);
-                }
-            }
-        }
-        actualNodo = actualNodo.getSiguiente();
+            actualNodo = actualNodo.getSiguiente();
         }
 
+        actualNodo = listaNodos.getpFirst();
+        while (actualNodo != null) {
+            NodoArbol nodo = actualNodo.getValor();
+            if (nodo.obtenerPadre() == null) {
+                this.raiz = nodo;
+                break;
+            }
+            actualNodo = actualNodo.getSiguiente();
+        }
     }
      
     /**
@@ -88,22 +69,12 @@ public class Arbol {
     }
     
     /**
-     * pone la raiz
-     * @param raiz 
-     */
-    public void setRaiz(NodoArbol raiz) {
-        this.raiz = raiz;
-    }
-    
-    
-    
-    /**
      * Metodo para buscar solo por persona
      * @param persona
      * @return 
      */
     public NodoArbol buscarNodo(Persona persona) {
-        return buscarNodoRecursivo(getRaiz(), persona);
+        return buscarNodoRecursivo(raiz, persona);
     }
     
     /**
@@ -212,7 +183,7 @@ public class Arbol {
 
         int nivel = obtenerNivel(nodo, 0); 
         ListaSimple mismaGeneracion = new ListaSimple();
-        obtenerNodosEnNivel(getRaiz(), nivel, 0, mismaGeneracion);
+        obtenerNodosEnNivel(raiz, nivel, 0, mismaGeneracion);
 
         // Convertir la lista enlazada a array
         return mismaGeneracion.aArray();
@@ -228,7 +199,7 @@ public class Arbol {
         if (nodo == null) {
             return -1; 
         }
-        if (nodo == getRaiz()) {
+        if (nodo == raiz) {
             return nivelActual;
         }
         return obtenerNivel(nodo.obtenerPadre(), nivelActual + 1);
@@ -256,7 +227,7 @@ public class Arbol {
     }
     public String[] obtenerPorTituloNobiliario(String titulo) {
         ListaSimple resultado = new ListaSimple();
-        buscarPorTituloNobiliario(getRaiz(), titulo, resultado);
+        buscarPorTituloNobiliario(raiz, titulo, resultado);
         return resultado.aArray();
     }
 
@@ -281,7 +252,7 @@ public class Arbol {
         NodoArbol Raiznueva = buscarNodo(persona);
         if (Raiznueva != null) {
             Arbol subArbol = new Arbol(Raiznueva.getPersona());
-            copiarDescendientes(Raiznueva, subArbol.getRaiz());
+            copiarDescendientes(Raiznueva, subArbol.raiz);
             return subArbol;
         } else {
             //No se encuentra ese miembro en el arbol
@@ -301,14 +272,5 @@ public class Arbol {
             copiarDescendientes(hijoOriginal, hijoCopia);
         }
     }
-
-    /**
-     * @return the raiz
-     */
-    public NodoArbol getRaiz() {
-        return raiz;
-    }
-    
-    
 
 }
