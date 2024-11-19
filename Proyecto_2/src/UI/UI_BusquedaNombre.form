@@ -37,14 +37,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="BusquedaBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar HashTable"/>
+        <Property name="text" type="java.lang.String" value="Buscar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BusquedaBtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="260" y="100" width="-1" height="-1"/>
+          <AbsoluteConstraints x="280" y="90" width="-1" height="30"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -85,12 +85,12 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Component class="javax.swing.JButton" name="BusquedaArbolBtn">
+    <Component class="javax.swing.JButton" name="DescendenciaPersonaBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Descendencia"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BusquedaArbolBtnActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DescendenciaPersonaBtnActionPerformed"/>
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

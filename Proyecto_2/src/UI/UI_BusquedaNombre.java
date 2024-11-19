@@ -30,7 +30,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         
     }
     
-    public void ArbolDescendencia(Arbol subArbol, String motePersona, boolean isPadre){
+    public void ArbolDescendencia(Arbol subArbol, Persona padre, String nombrePersona, String numeral, boolean isPadre){
         try{
             //System.out.println("DESCENDENCIA");
             ListaSimple lista_personas;
@@ -38,38 +38,35 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             Nodo auxNodo;
             String nombreHijo;
             Persona hijo;
-            if (!motePersona.equals("")){
-                int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(motePersona));
-                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(this.NombrePersonaTxt.getText());
+            if (!nombrePersona.equals("")){
+                int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(nombrePersona));
+                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral);
+                
                 if (auxPersona != null){
                     if (isPadre)
                         subArbol = new Arbol(auxPersona);
                     else
-                        subArbol.agregarNodo(subArbol.obtenerPadre(auxPersona).getPersona(), auxPersona);
+                        subArbol.agregarNodo(padre, auxPersona);
 
                     if(auxPersona.getHijos()!=null){
                         auxNodo = auxPersona.getHijos().getpFirst();
-                        
-
                         while(auxNodo != null){
                             nombreHijo = auxNodo.getValor().toString() + auxPersona.getApellido();
                             hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
                             if(hijo.getNombre()== null)
                                 hijo.setNombre(nombreHijo);
-                            
-                            if(hijo.getMote()!=null)
-                                this.ArbolDescendencia(subArbol, hijo.getMote() , false);
-                            
+                                
+
+                            if(hijo.getNombre()!=null)
+                                this.ArbolDescendencia(subArbol, auxPersona, hijo.getNombre(), hijo.getNumeral(), false);
+
                             System.out.println(hijo.getNombre());
                             auxNodo = auxNodo.getSiguiente();
                         }
-                        
-
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "No existe una persona con este mote" );
-                    throw new IllegalArgumentException("No existe una persona con este mote");    
+                    subArbol.agregarNodo(padre, auxPersona);
                 }
             }
         }
@@ -78,8 +75,9 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         }
     }
     
-    public void BusquedaDescendencia(){
+    public void BusquedaPersona(){
         Persona auxPersona;
+        ListaSimple lista_personas;
         Nodo auxNodo;
         Persona hijo;
         String nombreHijo;
@@ -90,36 +88,17 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             for (int i = 0; i < this.hashTableT.getSize(); i++){
                 if (this.hashTableT.getArregloHash()[i] != null){
                     //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
-                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(this.NombrePersonaTxt.getText());
-                    if (auxPersona != null){
-                        this.ComboBox.addItem(auxPersona.getNombre());
-                        if(auxPersona.getHijos()!=null){
-                            auxNodo = auxPersona.getHijos().getpFirst();
-                            Arbol subArbol = new Arbol(auxPersona);
-                            while(auxNodo != null){
-                                nombreHijo = auxNodo.getValor().toString() + auxPersona.getApellido();
-                                hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
-                                if(hijo.getNombre()== null)
-                                    hijo.setNombre(nombreHijo);
-
-                                subArbol.agregarNodo(auxPersona, hijo);
-                                System.out.println("Hijo : " + hijo.getNombre());
-                                auxNodo = auxNodo.getSiguiente();
-                        }
-                            
-                        }
-                        
-                        //this.lista_personas.insertarAlFinal(auxPersona);
-                        /*for (int n = 0; n < this.hashTableT.getArregloHash()[i].getPersonas_encontradas().getSize(); n++){
-                            auxNodo = this.hashTableT.getArregloHash()[i].getPersonas_encontradas().get(n);
-                            this.ComboBox.addItem(auxResumen.getTitulo());
-                            this.lista_resumenes.add(auxResumen);
-                        }*/
+                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
+                    auxNodo = lista_personas.getpFirst();
+                    while(auxNodo!=null){
+                        auxPersona = (Persona)auxNodo.getValor();
+                        if (auxPersona != null)
+                            this.ComboBox.addItem(auxPersona.getNombre() + " - " + auxPersona.getNumeral());
+                        auxNodo = auxNodo.getSiguiente();
                     }
+                    
                 }
-
-            }
-            
+            }    
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona" );
@@ -141,7 +120,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         ComboBox = new javax.swing.JComboBox<>();
         NombrePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        BusquedaArbolBtn = new javax.swing.JButton();
+        DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -150,13 +129,13 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel1.setText("Busqueda por Mote");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
-        BusquedaBtn.setText("Buscar HashTable");
+        BusquedaBtn.setText("Buscar");
         BusquedaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, 30));
 
         jButton2.setText("Atrás");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
@@ -166,13 +145,13 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel2.setText("Ingrese el nombre de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
-        BusquedaArbolBtn.setText("Descendencia");
-        BusquedaArbolBtn.addActionListener(new java.awt.event.ActionListener() {
+        DescendenciaPersonaBtn.setText("Descendencia");
+        DescendenciaPersonaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BusquedaArbolBtnActionPerformed(evt);
+                DescendenciaPersonaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
+        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
 
         jLabel3.setText("Seleccione una persona:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
@@ -182,20 +161,20 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
 
     private void BusquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBtnActionPerformed
         this.ComboBox.removeAllItems();
-        String nombrePersona = this.NombrePersonaTxt.getText();
-        Arbol subArbol = new Arbol();
-        
-        this.ArbolDescendencia(subArbol, nombrePersona, true);
+        this.BusquedaPersona();
         //this.lista_resumenes.clear();
         //this.limpiarPantalla();
         
     }//GEN-LAST:event_BusquedaBtnActionPerformed
 
-    private void BusquedaArbolBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaArbolBtnActionPerformed
-        this.ComboBox.removeAllItems();
-        this.BusquedaDescendencia();
+    private void DescendenciaPersonaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtnActionPerformed
+        String nom1 = this.ComboBox.getSelectedItem().toString();
+        String[] persona = nom1.split("-"); 
+        String nombrePersona = persona[0].trim();
+        Arbol subArbol = new Arbol();
+        this.ArbolDescendencia(subArbol, null, nombrePersona, persona[1].substring(1), true);
         
-    }//GEN-LAST:event_BusquedaArbolBtnActionPerformed
+    }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,9 +213,9 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BusquedaArbolBtn;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
+    private javax.swing.JButton DescendenciaPersonaBtn;
     private javax.swing.JTextField NombrePersonaTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
