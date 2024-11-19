@@ -141,36 +141,58 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         MotePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         BusquedaArbolBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Busqueda por Mote");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
 
+        BusquedaBtn.setBackground(new java.awt.Color(204, 204, 204));
+        BusquedaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        BusquedaBtn.setForeground(new java.awt.Color(0, 0, 0));
         BusquedaBtn.setText("Buscar HashTable");
         BusquedaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 100, -1, -1));
+        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, -1, 40));
 
-        jButton2.setText("Atrás");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, -1));
-        getContentPane().add(MotePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, -1));
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
+        jButton2.setText("Volver");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 40));
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 230, 40));
+        getContentPane().add(MotePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 230, 40));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese el mote de la persona a buscar:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, -1));
 
+        BusquedaArbolBtn.setBackground(new java.awt.Color(204, 204, 204));
+        BusquedaArbolBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        BusquedaArbolBtn.setForeground(new java.awt.Color(0, 0, 0));
         BusquedaArbolBtn.setText("Buscar Arbol");
         BusquedaArbolBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaArbolBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -191,6 +213,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         this.BusquedaDescendencia();
         
     }//GEN-LAST:event_BusquedaArbolBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -236,5 +262,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
