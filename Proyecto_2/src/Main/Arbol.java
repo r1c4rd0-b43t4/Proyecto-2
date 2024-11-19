@@ -32,6 +32,7 @@ public class Arbol {
             actual = actual.getSiguiente();
         }
 
+       this.setRaiz(listaNodos.getpFirst().getValor());
         Nodo<NodoArbol> actualNodo = listaNodos.getpFirst();
         while (actualNodo != null) {
             NodoArbol nodo = actualNodo.getValor();
@@ -77,25 +78,7 @@ public class Arbol {
         }
         actualNodo = actualNodo.getSiguiente();
         }
-        
-        actualNodo = listaNodos.getpFirst();
-        while (actualNodo != null) {
-            NodoArbol nodo = actualNodo.getValor();
-            Persona persona= nodo.getPersona();
-            Nodo<String> padreActual = persona.getPadres().getpFirst();
-            boolean esRaiz =false;
-            while(padreActual != null){
-                if(padreActual.getValor().equals("[Unknown]")){
-                    esRaiz = true;
-                    break;
-                }
-                padreActual = padreActual.getSiguiente();
-            }
-            if(esRaiz){
-                this.raiz = nodo;
-            }
-            actualNodo = actualNodo.getSiguiente().getSiguiente();
-        }
+
     }
      
     /**
@@ -103,6 +86,16 @@ public class Arbol {
      */
     public Arbol() {
     }
+    
+    /**
+     * pone la raiz
+     * @param raiz 
+     */
+    public void setRaiz(NodoArbol raiz) {
+        this.raiz = raiz;
+    }
+    
+    
     
     /**
      * Metodo para buscar solo por persona
