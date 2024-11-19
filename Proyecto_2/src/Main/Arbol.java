@@ -39,7 +39,7 @@ public class Arbol {
 
             Nodo<String> padreActual = persona.getPadres().getpFirst();
             while (padreActual != null) {
-                Persona padrePersona = listaPersonas.BuscarNombre(padreActual.getValor());
+                Persona padrePersona = listaPersonas.BuscarNombreIndividual(padreActual.getValor());
                 if (padrePersona != null) {
                     NodoArbol nodoPadre = buscarNodo(padrePersona);
                     if (nodoPadre != null) {

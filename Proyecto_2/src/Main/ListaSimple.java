@@ -103,7 +103,7 @@ public class ListaSimple<T> {
         }
     } 
     
-    public Persona BuscarNombre (String value){
+    public Persona BuscarNombreIndividual (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
         Persona auxPersona = new Persona();
@@ -125,7 +125,7 @@ public class ListaSimple<T> {
         
     }
     
-    public Persona BuscarMote (String value){
+    public Persona BuscarMoteIndividual (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
         Persona auxPersona = new Persona();
@@ -140,6 +140,29 @@ public class ListaSimple<T> {
             aux = aux.getSiguiente();  
         }
         return auxPersona;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
+    public ListaSimple BuscarNombreLista (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        ListaSimple lista_personas = new ListaSimple();
+        Persona auxPersona = new Persona();
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getNombre().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                lista_personas.insertarAlFinal(auxPersona);
+            }   
+            aux = aux.getSiguiente();  
+        }
+        return lista_personas;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
