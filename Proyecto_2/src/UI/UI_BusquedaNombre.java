@@ -18,21 +18,21 @@ import javax.swing.JOptionPane;
 public class UI_BusquedaNombre extends javax.swing.JFrame {
     static HashTable hashTableT;
     static Arbol arbolPrincipal;
-    private ListaSimple lista_personas;
     /**
      * Creates new form BusquedaNombre
+     * @param hashTableT_Param
+     * @param arbolPrincipal_Param
      */
-    public UI_BusquedaNombre(HashTable hashTableT, Arbol arbolPrincipal ) {
+    public UI_BusquedaNombre(HashTable hashTableT_Param, Arbol arbolPrincipal_Param) {
         initComponents();
-        this.hashTableT = hashTableT;
-        this.arbolPrincipal = arbolPrincipal;
-        this.lista_personas = new ListaSimple();
+        hashTableT = hashTableT_Param;
+        arbolPrincipal = arbolPrincipal_Param;
         
     }
     
     public void ArbolDescendencia(Arbol subArbol, String motePersona, boolean isPadre){
         try{
-            System.out.println("DESCENDENCIA");
+            //System.out.println("DESCENDENCIA");
             Persona auxPersona;
             Nodo auxNodo;
             String nombreHijo;
@@ -118,9 +118,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 }
 
             }
-            if (this.lista_personas.getSize() > 0){
-                //this.llenarInformacionTxt(this.lista_personas.get(0));
-            }
+            
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona" );

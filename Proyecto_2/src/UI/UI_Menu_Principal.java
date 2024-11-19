@@ -138,7 +138,8 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
-    
+        UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal);
+        pantalla.setVisible(true);
     }//GEN-LAST:event_CargarJSONActionPerformed
 
     private void CargarJSON1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON1ActionPerformed
