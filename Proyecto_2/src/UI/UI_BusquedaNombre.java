@@ -142,6 +142,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         NombrePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         BusquedaArbolBtn = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -165,13 +166,16 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel2.setText("Ingrese el nombre de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
-        BusquedaArbolBtn.setText("Buscar Arbol");
+        BusquedaArbolBtn.setText("Descendencia");
         BusquedaArbolBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaArbolBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, -1, -1));
+        getContentPane().add(BusquedaArbolBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
+
+        jLabel3.setText("Seleccione una persona:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -237,5 +241,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
