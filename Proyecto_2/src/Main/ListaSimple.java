@@ -49,6 +49,8 @@ public class ListaSimple<T> {
         return aux;        
     }
    
+    
+    
     public void insertarAlFinal(T value){
         
         Nodo newNodo = new Nodo();
@@ -165,4 +167,16 @@ public class ListaSimple<T> {
 
         return resultado;
     }
+    
+    public boolean contiene(T value) {
+        Nodo<T> aux = this.pFirst;
+        while (aux != null) {
+            if (aux.getValor().equals(value)) {
+                return true; 
+            }
+            aux = aux.getSiguiente();
+        }
+        return false; 
+    }
+
 }

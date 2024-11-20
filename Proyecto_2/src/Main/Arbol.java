@@ -23,64 +23,103 @@ public class Arbol {
      * @param listaPersonas 
      */
     public void construirArbol(ListaSimple<Persona> listaPersonas) {
-        ListaSimple<NodoArbol> listaNodos = new ListaSimple<>();
+        // Identificar la raíz
+        Persona raizPersona = buscarRaiz(listaPersonas);
+        if (raizPersona == null) {
+            //no se encuentra
+            return;
+        }
+    
+        // Crear la raiz
+        NodoArbol raizNodo = new NodoArbol(raizPersona);
+        this.setRaiz(raizNodo);
+       
+        
+
+        
+        procesarNodo(raizNodo, listaPersonas);
+
+    System.out.println(this.contarPersonas());
+}
+
+    private void procesarNodo(NodoArbol nodoPadre, ListaSimple<Persona> listaPersonas) {
+        Persona personaPadre = nodoPadre.getPersona();
 
         Nodo<Persona> actual = listaPersonas.getpFirst();
         while (actual != null) {
-            NodoArbol nodo = new NodoArbol(actual.getValor());
-            listaNodos.insertarAlFinal(nodo);
+            Persona persona = actual.getValor();
+            if (!persona.equals(personaPadre)) {
+                boolean aver = this.existePersona(persona);
+                if (esHijoDe(persona, personaPadre)&& !aver) {
+                    NodoArbol nodoHijo = new NodoArbol(persona);
+                    nodoPadre.agregarHijo(nodoHijo);
+                    
+                    System.out.println("Asignado hijo: " + persona.getNombre() + persona.getNumeral() + " a padre: " + personaPadre.getNombre()+personaPadre.getNumeral());
+                    // Recursivamente procesar los hijos del nuevo nodo
+                    procesarNodo(nodoHijo, listaPersonas);
+                }
+            }
             actual = actual.getSiguiente();
         }
-
-       this.setRaiz(listaNodos.getpFirst().getValor());
-        Nodo<NodoArbol> actualNodo = listaNodos.getpFirst();
-        while (actualNodo != null) {
-            NodoArbol nodo = actualNodo.getValor();
-            Persona persona = nodo.getPersona();
-            
-            //arreglar
-            Nodo<String> padreActual = persona.getPadres().getpFirst();
-            if (padreActual != null && !padreActual.getValor().equals("[Unknown]")) {
-            String nombrePadre = padreActual.getValor();
-            Persona padrePersona = null;
-
-            // Buscar persona por nombre
-            Nodo<Persona> nodoPersona = listaPersonas.getpFirst();
-            while (nodoPersona != null) {
-                Persona posiblePadre = nodoPersona.getValor();
-                String nombrePersonaCompleto = posiblePadre.getNombre() + ", " + posiblePadre.getNumeral() + " of his name";
-                if (nombrePersonaCompleto.equals(nombrePadre)) {
-                    padrePersona = posiblePadre;
-                    break;
-                }
-                nodoPersona = nodoPersona.getSiguiente();
-            }
-
-            // Si no se encuentra por nombre busca por mote
-            if (padrePersona == null) {
-                nodoPersona = listaPersonas.getpFirst();
-                while (nodoPersona != null) {
-                    Persona posiblePadre = nodoPersona.getValor();
-                    if (posiblePadre.getMote() != null && posiblePadre.getMote().equals(nombrePadre)) {
-                        padrePersona = posiblePadre;
-                        break;
-                    }
-                    nodoPersona = nodoPersona.getSiguiente();
-                }
-            }
-
-            if (padrePersona != null) {
-                NodoArbol nodoPadre = buscarNodo(padrePersona);
-                if (nodoPadre != null) {
-                    nodoPadre.agregarHijo(nodo);
-                }
-            }
-        }
-        actualNodo = actualNodo.getSiguiente();
-        }
-
+}
+        
+    public int contarPersonas() {
+        return contarPersonasRecursivo(raiz);
     }
-     
+
+    private int contarPersonasRecursivo(NodoArbol nodo) {
+        if (nodo == null) {
+            return 0;
+        }
+        int count = 1; // Contar el nodo actual
+        for (NodoArbol hijo : nodo.obtenerHijos()) {
+            count += contarPersonasRecursivo(hijo);
+        }
+        return count;
+    }
+    
+    private boolean esHijoDe(Persona hijo, Persona padre) {
+        Nodo<String> padreActual = hijo.getPadres().getpFirst();
+        while (padreActual != null) {
+            String nombrePadre = padreActual.getValor();
+            String nombrePadreCompleto = padre.getNombre() + ", " + padre.getNumeral() + " of his name";
+
+            String nombrePadreSinNumeral = padre.getNombre();
+            if (nombrePadre.contains(",")) {
+                nombrePadreSinNumeral = nombrePadre.split(",")[0].trim();
+            }
+
+            if (nombrePadre.equals(nombrePadreCompleto) || 
+                nombrePadre.equals(nombrePadreSinNumeral) ||
+                (padre.getMote() != null && nombrePadre.equals(padre.getMote()))) {
+                return true;
+            }
+        padreActual = padreActual.getSiguiente();
+        }
+        return false;
+    }
+
+
+
+    public boolean existePersona(Persona persona) {
+        return buscarNodo(persona) != null;
+    }
+
+    
+    private Persona buscarRaiz(ListaSimple<Persona> listaPersonas) {
+        Nodo<Persona> actual = listaPersonas.getpFirst();
+            while (actual != null) {
+                Persona persona = actual.getValor();
+                Nodo<String> padreActual = persona.getPadres().getpFirst();
+                if (padreActual != null && padreActual.getValor().equals("[Unknown]")) {
+                    return persona;
+                }
+                actual = actual.getSiguiente();
+            }
+        return null;
+    }
+
+    
     /**
      * Constructor
      */
@@ -116,7 +155,7 @@ public class Arbol {
         if (nodo == null) {
             return null;
         }
-        if (nodo.getPersona().getNombre().equals(persona.getNombre())) {
+        if (nodo.getPersona().getNombre().equals(persona.getNombre())&& nodo.getPersona().getNumeral().equals(persona.getNumeral())&&nodo.getPersona().getPadres().getpFirst().getValor().equals(persona.getPadres().getpFirst().getValor())) {
             return nodo;
         }
         for (NodoArbol hijo : nodo.obtenerHijos()) {
