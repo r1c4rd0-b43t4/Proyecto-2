@@ -105,7 +105,33 @@ public class ListaSimple<T> {
         }
     } 
     
-    public Persona BuscarNombre (String value){
+    // Se usa si necesitas saber que numeral tiene la persona elegida
+    public Persona BuscarNombreIndividualNumeral (String value, String numeral){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona res = new Persona();
+        Nodo aux = this.pFirst;
+        while (aux != null){
+             res = (Persona) aux.getValor();
+            if (res.getNombre().equals(value) && res.getNumeral().equals(numeral)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                //auxPersona = (Persona)aux.getValor();
+                return res;
+            }   
+            aux = aux.getSiguiente();  
+        }
+        res = null;
+        return res;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
+    
+    // Se usa si no necesitas especificar cual numeral tiene
+    public Persona BuscarNombreIndividual (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
         Persona auxPersona = new Persona();
@@ -127,21 +153,22 @@ public class ListaSimple<T> {
         
     }
     
-    public Persona BuscarMote (String value){
+    public ListaSimple BuscarNombreLista (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
+        ListaSimple lista_personas = new ListaSimple();
         Persona auxPersona = new Persona();
         Nodo aux = this.pFirst;
         while (aux != null){
             Persona res = (Persona) aux.getValor();
-            if (res.getMote().equals(value)){
+            if (res.getNombre().equals(value)){
                 //this.personas_encontradas.insertarAlFinal(aux.getValor());
                 auxPersona = (Persona)aux.getValor();
-                return auxPersona;
+                lista_personas.insertarAlFinal(auxPersona);
             }   
             aux = aux.getSiguiente();  
         }
-        return auxPersona;
+        return lista_personas;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
