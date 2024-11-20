@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author HP
  */
-public class UI_BusquedaNombre extends javax.swing.JFrame {
+public class UI_BusquedaTitulo extends javax.swing.JFrame {
     static HashTable hashTableT;
     static Arbol arbolPrincipal;
     /**
@@ -23,7 +23,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
      * @param hashTableT_Param
      * @param arbolPrincipal_Param
      */
-    public UI_BusquedaNombre(HashTable hashTableT_Param, Arbol arbolPrincipal_Param) {
+    public UI_BusquedaTitulo(HashTable hashTableT_Param, Arbol arbolPrincipal_Param) {
         initComponents();
         hashTableT = hashTableT_Param;
         arbolPrincipal = arbolPrincipal_Param;
@@ -90,7 +90,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                     //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
                     lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
                     auxNodo = lista_personas.getpFirst();
-                    //Hay que validar cuando no se encuentra una persona    
                     while(auxNodo!=null){
                         auxPersona = (Persona)auxNodo.getValor();
                         if (auxPersona != null)
@@ -143,7 +142,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, -1));
         getContentPane().add(NombrePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, -1));
 
-        jLabel2.setText("Ingrese el nombre de la persona a buscar:");
+        jLabel2.setText("Ingrese el titulo de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
 
         DescendenciaPersonaBtn.setText("Descendencia");
@@ -198,21 +197,23 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UI_BusquedaNombre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_BusquedaTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UI_BusquedaNombre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_BusquedaTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UI_BusquedaNombre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_BusquedaTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UI_BusquedaNombre.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UI_BusquedaTitulo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_BusquedaNombre(hashTableT, arbolPrincipal).setVisible(true);
+                new UI_BusquedaTitulo(hashTableT, arbolPrincipal).setVisible(true);
             }
         });
     }
