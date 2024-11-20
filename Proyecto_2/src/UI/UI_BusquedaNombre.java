@@ -172,7 +172,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 MenuActionPerformed(evt);
             }
         });
-        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, 40));
+        getContentPane().add(Menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 100, 40));
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 230, 40));
         getContentPane().add(MotePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 230, 40));
 
