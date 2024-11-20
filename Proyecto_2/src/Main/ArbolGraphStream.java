@@ -1,13 +1,11 @@
 package Main;
+
 import Main.NodoArbol;
-
-
-
-
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.layout.HierarchicalLayout;
+import org.graphstream.ui.view.Viewer;
 
 public class ArbolGraphStream {
     private Graph graph;
@@ -56,11 +54,11 @@ public class ArbolGraphStream {
     public void mostrar() {
         graph.setAttribute("ui.stylesheet", "node { fill-color: green; size: 20px; text-alignment: under; text-color: black; }");
         graph.setAttribute("ui.antialias");
-        graph.display().enableAutoLayout(new HierarchicalLayout());
+        Viewer viewer = graph.display();
+        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.CLOSE_VIEWER);
+        viewer.enableAutoLayout(new HierarchicalLayout());
     }
 }
-
-
 
 
 
