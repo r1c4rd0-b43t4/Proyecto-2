@@ -174,8 +174,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     private void VerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroActionPerformed
         Arbol arbol = new Arbol();
         arbol.construirArbol(personas);
-        ArbolGraphStream arbolgt = new ArbolGraphStream(arbol);
-        arbolgt.mostrar();
+        new ArbolGraphJGraphT(arbol, personas);
                 
       
         
