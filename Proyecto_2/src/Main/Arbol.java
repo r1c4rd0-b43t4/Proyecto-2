@@ -77,8 +77,6 @@ public class Arbol {
         return buscarNodoRecursivo(getRaiz(), persona);
     }
     
-    
-    
     /**
      * Metodo que recorre todo el arbol para encontrar un nodo
      * @param nodo
@@ -281,5 +279,7 @@ public class Arbol {
     public NodoArbol getRaiz() {
         return raiz;
     }
+    
+    
 
 }
