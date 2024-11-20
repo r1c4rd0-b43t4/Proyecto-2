@@ -5,6 +5,7 @@ import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.view.ViewerPipe;
+import org.graphstream.ui.layout.HierarchicalLayout;
 import javax.swing.*;
 
 public class ArbolGraphStream implements Runnable {
@@ -20,24 +21,43 @@ public class ArbolGraphStream implements Runnable {
     private void construirGrafo(NodoArbol nodo) {
         if (nodo != null) {
             agregarNodo(nodo);
+
+            String nodoPadreId = nodo.getPersona().getNombre() + "-" + nodo.getPersona().getNumeral();
+
             for (NodoArbol hijo : nodo.obtenerHijos()) {
-                graph.addEdge(nodo.getPersona().getNombre() + "-" + hijo.getPersona().getNombre(), nodo.getPersona().getNombre(), hijo.getPersona().getNombre());
-                construirGrafo(hijo);
+                if (hijo != null) {
+                    agregarNodo(hijo);
+                    String nodoHijoId = hijo.getPersona().getNombre() + "-" + hijo.getPersona().getNumeral();
+
+                    if (graph.getNode(nodoPadreId) != null && graph.getNode(nodoHijoId) != null) {
+                        String edgeId = nodoPadreId + "--" + nodoHijoId; // Identificador único para la arista
+
+                        if (graph.getEdge(edgeId) == null) { // Verificar si la arista ya existe
+                            graph.addEdge(edgeId, nodoPadreId, nodoHijoId);
+                        }
+                    }
+                    construirGrafo(hijo);
+                }
             }
         }
     }
 
     private void agregarNodo(NodoArbol nodo) {
-        if (graph.getNode(nodo.getPersona().getNombre()) == null) {
-            Node n = graph.addNode(nodo.getPersona().getNombre());
-            n.setAttribute("ui.label", nodo.getPersona().toString());
-            n.setAttribute("persona", nodo.getPersona()); // Agregar el objeto Persona como atributo
+        String nodeId = nodo.getPersona().getNombre() + "-" + nodo.getPersona().getNumeral();
+
+        if (graph.getNode(nodeId) == null) { 
+            System.out.println("Agregando nodo: " + nodeId);
+            Node n = graph.addNode(nodeId); 
+            n.setAttribute("ui.label", nodo.getPersona().getNombre());
+            n.setAttribute("persona", nodo.getPersona()); 
         }
     }
 
     public void mostrar() {
+        graph.setAttribute("ui.stylesheet", "node { fill-color: green; size: 20px; text-alignment: under; text-color: black; }");
+        graph.setAttribute("ui.antialias");
         Viewer viewer = graph.display();
-        viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+        viewer.enableAutoLayout(new HierarchicalLayout());
 
         ViewerPipe fromViewer = viewer.newViewerPipe();
         fromViewer.addViewerListener(new org.graphstream.ui.view.ViewerListener() {
@@ -46,41 +66,70 @@ public class ArbolGraphStream implements Runnable {
                 loop = false;
             }
 
-            @Override
-            public void buttonPushed(String id) {
-                Node node = graph.getNode(id);
+        @Override
+        public void buttonPushed(String id) {
+            Node node = graph.getNode(id);
+            if (node != null) {
                 Persona persona = (Persona) node.getAttribute("persona");
-                JOptionPane.showMessageDialog(null, "Información del nodo: " + persona.toString());
+                if (persona != null) {
+                    StringBuilder info = new StringBuilder();
+                    info.append("Nombre: ").append(persona.getNombre()).append("\n");
+                    info.append("Apellido: ").append(persona.getApellido()).append("\n");
+                    info.append("Numeral: ").append(persona.getNumeral()).append("\n");
+                    info.append("Mote: ").append(persona.getMote()).append("\n");
+                    info.append("Título: ").append(persona.getTitulo()).append("\n");
+                    info.append("Cónyuge: ").append(persona.getConyuge()).append("\n");
+                    info.append("Color de Ojos: ").append(persona.getColor_ojos()).append("\n");
+                    info.append("Color de Pelo: ").append(persona.getColor_pelo()).append("\n");
+                    info.append("Destino: ").append(persona.getDestino()).append("\n");
+                    info.append("Notas: ").append(persona.getNotas()).append("\n");
+                        
+                    JOptionPane.showMessageDialog(null,
+                            info.toString(),
+                            "Información de " + persona.getNombre(),
+                            JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "No se encontró información asociada al nodo.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
+        }
 
             @Override
             public void buttonReleased(String id) {
-                // No action needed on button release
             }
 
             @Override
-            public void mouseOver(String string) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            public void mouseOver(String id) {
             }
 
             @Override
-            public void mouseLeft(String string) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            public void mouseLeft(String id) {
             }
         });
         fromViewer.addSink(graph);
 
-        while (loop) {
-            fromViewer.pump();
-        }
+
+        new Thread(this).start();
     }
 
     @Override
     public void run() {
+        ViewerPipe fromViewer = graph.display().newViewerPipe();
         while (loop) {
-            ViewerPipe fromViewer = graph.display().newViewerPipe();
             fromViewer.pump();
+            try {
+                Thread.sleep(100); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }
+
+
+
+
+
