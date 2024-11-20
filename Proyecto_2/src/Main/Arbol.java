@@ -9,7 +9,7 @@ package Main;
  * @author reneb
  */
 public class Arbol {
-    NodoArbol raiz;
+    private NodoArbol raiz;
     
     /**
      * Constructor
@@ -74,7 +74,7 @@ public class Arbol {
      * @return 
      */
     public NodoArbol buscarNodo(Persona persona) {
-        return buscarNodoRecursivo(raiz, persona);
+        return buscarNodoRecursivo(getRaiz(), persona);
     }
     
     /**
@@ -183,7 +183,7 @@ public class Arbol {
 
         int nivel = obtenerNivel(nodo, 0); 
         ListaSimple mismaGeneracion = new ListaSimple();
-        obtenerNodosEnNivel(raiz, nivel, 0, mismaGeneracion);
+        obtenerNodosEnNivel(getRaiz(), nivel, 0, mismaGeneracion);
 
         // Convertir la lista enlazada a array
         return mismaGeneracion.aArray();
@@ -199,7 +199,7 @@ public class Arbol {
         if (nodo == null) {
             return -1; 
         }
-        if (nodo == raiz) {
+        if (nodo == getRaiz()) {
             return nivelActual;
         }
         return obtenerNivel(nodo.obtenerPadre(), nivelActual + 1);
@@ -227,7 +227,7 @@ public class Arbol {
     }
     public String[] obtenerPorTituloNobiliario(String titulo) {
         ListaSimple resultado = new ListaSimple();
-        buscarPorTituloNobiliario(raiz, titulo, resultado);
+        buscarPorTituloNobiliario(getRaiz(), titulo, resultado);
         return resultado.aArray();
     }
 
@@ -252,7 +252,7 @@ public class Arbol {
         NodoArbol Raiznueva = buscarNodo(persona);
         if (Raiznueva != null) {
             Arbol subArbol = new Arbol(Raiznueva.getPersona());
-            copiarDescendientes(Raiznueva, subArbol.raiz);
+            copiarDescendientes(Raiznueva, subArbol.getRaiz());
             return subArbol;
         } else {
             //No se encuentra ese miembro en el arbol
@@ -272,5 +272,14 @@ public class Arbol {
             copiarDescendientes(hijoOriginal, hijoCopia);
         }
     }
+
+    /**
+     * @return the raiz
+     */
+    public NodoArbol getRaiz() {
+        return raiz;
+    }
+    
+    
 
 }
