@@ -119,7 +119,7 @@ public class ArbolGraphJGraphT {
             String numeral = parts[1];
             int indice = personasHash.getIndice(personasHash.returnAsciiCode(nombre));
             ListaSimple<Persona> listaPersonas = personasHash.getArregloHash()[indice];
-            Persona persona = listaPersonas.BuscarNombreIndividualNumeral(nombre, numeral);
+            Persona persona = listaPersonas.BuscarNombreIndividualNumeral(nombre, numeral, false);
 
             if (persona != null) {
                 StringBuilder info = new StringBuilder();
