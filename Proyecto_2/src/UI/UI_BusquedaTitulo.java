@@ -250,13 +250,54 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     private void DescendenciaPersonaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtnActionPerformed
         try{
             String nom1 = this.ComboBox.getSelectedItem().toString();
+            String[] auxPersona = nom1.split("-"); 
+            String nombrePersona = auxPersona[0].trim();
+            String numeral = auxPersona[1].substring(1);
+            int indice = hashTableT.getIndice(hashTableT.returnAsciiCode(nombrePersona));
+            ListaSimple<Persona> listaPersonas = hashTableT.getArregloHash()[indice];
+            Persona persona = listaPersonas.BuscarNombreIndividualNumeral(nombrePersona, numeral, false);
+
+            if (persona != null) {
+                StringBuilder info = new StringBuilder();
+                info.append("Nombre: ").append(persona.getNombre()).append("\n");
+                info.append("Apellido: ").append(persona.getApellido()).append("\n");
+                info.append("Numeral: ").append(persona.getNumeral()).append("\n");
+                info.append("Mote: ").append(persona.getMote()).append("\n");
+                info.append("Título: ").append(persona.getTitulo()).append("\n");
+                info.append("Cónyuge: ").append(persona.getConyuge()).append("\n");
+                info.append("Color de Ojos: ").append(persona.getColor_ojos()).append("\n");
+                info.append("Color de Pelo: ").append(persona.getColor_pelo()).append("\n");
+                info.append("Destino: ").append(persona.getDestino()).append("\n");
+                info.append("Notas: ").append(persona.getNotas()).append("\n");
+
+                info.append("Padres:\n");
+                Nodo<String> padreNodo = persona.getPadres().getpFirst();
+                while (padreNodo != null) {
+                    String padre = padreNodo.getValor();
+                    info.append("\t").append(padre).append("\n");
+                    padreNodo = padreNodo.getSiguiente();
+                }
+
+                info.append("Hijos:\n");
+                Nodo<String> hijoNodo = persona.getHijos().getpFirst();
+                while (hijoNodo != null) {
+                    String hijo = hijoNodo.getValor();
+                    info.append("\t").append(hijo).append("\n");
+                    hijoNodo = hijoNodo.getSiguiente();
+                }
+
+                JOptionPane.showMessageDialog(null, info.toString(), "Información de " + persona.getNombre(), JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró información asociada al nodo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            /*String nom1 = this.ComboBox.getSelectedItem().toString();
             String[] persona = nom1.split("-"); 
             String nombrePersona = persona[0].trim();
             //Arbol subArbol = new Arbol();
             System.out.println("INICIO");
             this.ArbolDescendencia(null, nombrePersona, persona[1].substring(1), true);
             System.out.println("FINAL");
-            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
+            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);*/
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
