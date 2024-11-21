@@ -214,7 +214,10 @@ public class ListaSimple<T> {
             }   
             aux = aux.getSiguiente();  
         }
-        return lista_personas;
+        if (lista_personas.getpFirst()!=null)
+            return lista_personas;
+        else
+            return null;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
@@ -237,7 +240,10 @@ public class ListaSimple<T> {
             }   
             aux = aux.getSiguiente();  
         }
-        return lista_personas;
+        if (lista_personas.getpFirst()!=null)
+            return lista_personas;
+        else
+            return null;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
@@ -273,6 +279,16 @@ public class ListaSimple<T> {
             aux = aux.getSiguiente();
         }
         return false; 
+    }
+    
+    public void limpiarLista(){
+        Nodo aux = this.pFirst;
+        while(aux!=null){
+            Nodo prev = aux;
+            aux = aux.getSiguiente();
+            prev.setSiguiente(null);
+        }
+        this.pFirst = null;
     }
 
 }

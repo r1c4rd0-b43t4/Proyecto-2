@@ -134,25 +134,23 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
         // sus descendientes en la clase arbol
         if (!this.NombrePersonaTxt.getText().equals("")){
-            for (int i = 0; i < this.hashTableT.getSize(); i++){
-                if (this.hashTableT.getArregloHash()[i] != null){
-                    //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
-                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
-                    if (lista_personas == null){
-                        JOptionPane.showMessageDialog(null, "No hay una persona con este nombre" );
-                        return;
-                    }
-                        
-                    auxNodo = lista_personas.getpFirst();
-                    //Hay que validar cuando no se encuentra una persona    
-                    while(auxNodo!=null){
-                        auxPersona = (Persona)auxNodo.getValor();
-                        if (auxPersona != null)
-                            this.ComboBox.addItem(auxPersona.getNombre() + " - " + auxPersona.getNumeral());
-                        auxNodo = auxNodo.getSiguiente();
-                    } 
-                }
-            }    
+            
+            //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
+            int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(this.NombrePersonaTxt.getText()));
+            lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
+            if (lista_personas == null){
+                JOptionPane.showMessageDialog(null, "No hay una persona con este nombre, intente nuevamente" );
+                return;
+            }
+
+            auxNodo = lista_personas.getpFirst();
+            //Hay que validar cuando no se encuentra una persona    
+            while(auxNodo!=null){
+                auxPersona = (Persona)auxNodo.getValor();
+                if (auxPersona != null)
+                    this.ComboBox.addItem(auxPersona.getNombre() + " - " + auxPersona.getNumeral());
+                auxNodo = auxNodo.getSiguiente();
+            }         
         }
         else{
             JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona, intente nuevamente" );
@@ -183,7 +181,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Busqueda por Mote");
+        jLabel1.setText("Busqueda por Nombre");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
         BusquedaBtn.setBackground(new java.awt.Color(204, 204, 204));

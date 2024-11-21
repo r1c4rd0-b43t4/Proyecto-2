@@ -66,4 +66,10 @@ public class HashTable {
             aux = aux.getSiguiente();
         }
     }
+    
+    public void limpiarHashTable(){
+        for(int i=0;i<this.getArregloHash().length;i++){
+            this.getArregloHash()[i].limpiarLista();
+        }
+    }
 }

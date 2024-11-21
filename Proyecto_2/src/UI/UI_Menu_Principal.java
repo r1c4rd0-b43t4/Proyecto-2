@@ -148,6 +148,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     private void nuevoJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJSONActionPerformed
           try{
           ListaSimple lista = new ListaSimple();
+          hashTablePrincipal.limpiarHashTable();
           Reader reader = new Reader();
           lista = reader.Read();
           
