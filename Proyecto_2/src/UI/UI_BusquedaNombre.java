@@ -7,6 +7,7 @@ import Main.ListaSimple;
 import Main.HashTable;
 import Main.Nodo;
 import Main.Arbol;
+import Main.ArbolGraphJGraphT;
 import Main.NodoArbol;
 import Main.Persona;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     static HashTable hashTableT;
     static Arbol arbolPrincipal;
     static Arbol subArbol;
+    static ListaSimple lista_personas;
     /**
      * Creates new form BusquedaNombre
      * @param hashTableT_Param
@@ -28,6 +30,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         initComponents();
         hashTableT = hashTableT_Param;
         arbolPrincipal = arbolPrincipal_Param;
+        lista_personas = new ListaSimple();
         
     }
     
@@ -66,7 +69,8 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                     if (isPadre)
                         subArbol = new Arbol(auxPersona);
                     else{
-                        subArbol.agregarNodo(padre, auxPersona);  
+                        subArbol.agregarNodo(padre, auxPersona); 
+                        this.lista_personas.insertarAlFinal(auxPersona);
                         System.out.println(auxPersona.getNombre());
                     }
 
@@ -109,7 +113,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                     auxPersona = new Persona();
                     auxPersona.setNombre(nombrePersona); 
                     subArbol.agregarNodo(padre, auxPersona);
-                    
+                    this.lista_personas.insertarAlFinal(auxPersona);
                     System.out.println(auxPersona.getNombre());
                 }
             }
@@ -223,6 +227,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             System.out.println("INICIO");
             this.ArbolDescendencia(null, nombrePersona, persona[1].substring(1), true);
             System.out.println("FINAL");
+            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
