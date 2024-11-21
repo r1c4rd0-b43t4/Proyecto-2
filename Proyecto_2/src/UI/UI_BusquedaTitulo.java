@@ -218,7 +218,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         DescendenciaPersonaBtn.setBackground(new java.awt.Color(204, 204, 204));
         DescendenciaPersonaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
         DescendenciaPersonaBtn.setForeground(new java.awt.Color(0, 0, 0));
-        DescendenciaPersonaBtn.setText("Descendencia");
+        DescendenciaPersonaBtn.setText("Mostrar Datos");
         DescendenciaPersonaBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         DescendenciaPersonaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
