@@ -117,7 +117,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         BusquedaBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Atras = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
         TituloPersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -145,17 +145,17 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         });
         getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 90, 40));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Atrás");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Atras.setBackground(new java.awt.Color(204, 204, 204));
+        Atras.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        Atras.setForeground(new java.awt.Color(0, 0, 0));
+        Atras.setText("Atrás");
+        Atras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
+        getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 260, 40));
         getContentPane().add(TituloPersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 260, 40));
 
@@ -209,12 +209,12 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         this.setVisible(false);
         UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTableT, arbolPrincipal);
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,11 +255,11 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Atras;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
     private javax.swing.JTextField TituloPersonaTxt;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
