@@ -40,7 +40,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
             Persona hijo;
             if (!nombrePersona.equals("")){
                 int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(nombrePersona));
-                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral);
+                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral, false);
                 
                 if (auxPersona != null){
                     if (isPadre)
@@ -52,7 +52,8 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
                         auxNodo = auxPersona.getHijos().getpFirst();
                         while(auxNodo != null){
                             nombreHijo = auxNodo.getValor().toString() + auxPersona.getApellido();
-                            hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
+                            //hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
+                            hijo = this.hashTableT.getArregloHash()[i].BuscarHijoXNombre(nombreHijo, auxPersona);
                             if(hijo.getNombre()== null)
                                 hijo.setNombre(nombreHijo);
                                 
@@ -79,16 +80,14 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         Persona auxPersona;
         ListaSimple lista_personas;
         Nodo auxNodo;
-        Persona hijo;
-        String nombreHijo;
         //Nodo auxNodo;
         // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
         // sus descendientes en la clase arbol
-        if (!this.NombrePersonaTxt.getText().equals("")){
+        if (!this.TituloPersonaTxt.getText().equals("")){
             for (int i = 0; i < this.hashTableT.getSize(); i++){
                 if (this.hashTableT.getArregloHash()[i] != null){
                     //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
-                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
+                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarTituloLista(this.TituloPersonaTxt.getText());
                     auxNodo = lista_personas.getpFirst();
                     while(auxNodo!=null){
                         auxPersona = (Persona)auxNodo.getValor();
@@ -118,7 +117,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         BusquedaBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
-        NombrePersonaTxt = new javax.swing.JTextField();
+        TituloPersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -126,7 +125,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Busqueda por Mote");
+        jLabel1.setText("Busqueda por Titulo");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         BusquedaBtn.setText("Buscar");
@@ -140,7 +139,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         jButton2.setText("Atrás");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, -1));
-        getContentPane().add(NombrePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, -1));
+        getContentPane().add(TituloPersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, -1));
 
         jLabel2.setText("Ingrese el titulo de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
@@ -222,7 +221,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
-    private javax.swing.JTextField NombrePersonaTxt;
+    private javax.swing.JTextField TituloPersonaTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
