@@ -18,15 +18,17 @@ import javax.swing.JOptionPane;
 public class UI_BusquedaTitulo extends javax.swing.JFrame {
     static HashTable hashTableT;
     static Arbol arbolPrincipal;
+    static ListaSimple personas;
     /**
      * Creates new form BusquedaNombre
      * @param hashTableT_Param
      * @param arbolPrincipal_Param
      */
-    public UI_BusquedaTitulo(HashTable hashTableT_Param, Arbol arbolPrincipal_Param) {
+    public UI_BusquedaTitulo(HashTable hashTableT_Param, Arbol arbolPrincipal_Param, ListaSimple personas_Param) {
         initComponents();
         hashTableT = hashTableT_Param;
         arbolPrincipal = arbolPrincipal_Param;
+        personas = personas_Param;
         
     }
     
@@ -40,7 +42,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
             Persona hijo;
             if (!nombrePersona.equals("")){
                 int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(nombrePersona));
-                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral);
+                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral, false);
                 
                 if (auxPersona != null){
                     if (isPadre)
@@ -52,7 +54,8 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
                         auxNodo = auxPersona.getHijos().getpFirst();
                         while(auxNodo != null){
                             nombreHijo = auxNodo.getValor().toString() + auxPersona.getApellido();
-                            hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
+                            //hijo = this.hashTableT.getArregloHash()[i].BuscarNombreIndividual(nombreHijo);
+                            hijo = this.hashTableT.getArregloHash()[i].BuscarHijoXNombre(nombreHijo, auxPersona);
                             if(hijo.getNombre()== null)
                                 hijo.setNombre(nombreHijo);
                                 
@@ -79,16 +82,14 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         Persona auxPersona;
         ListaSimple lista_personas;
         Nodo auxNodo;
-        Persona hijo;
-        String nombreHijo;
         //Nodo auxNodo;
         // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
         // sus descendientes en la clase arbol
-        if (!this.NombrePersonaTxt.getText().equals("")){
+        if (!this.TituloPersonaTxt.getText().equals("")){
             for (int i = 0; i < this.hashTableT.getSize(); i++){
                 if (this.hashTableT.getArregloHash()[i] != null){
                     //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
-                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
+                    lista_personas = this.hashTableT.getArregloHash()[i].BuscarTituloLista(this.TituloPersonaTxt.getText());
                     auxNodo = lista_personas.getpFirst();
                     while(auxNodo!=null){
                         auxPersona = (Persona)auxNodo.getValor();
@@ -118,43 +119,71 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         BusquedaBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
-        NombrePersonaTxt = new javax.swing.JTextField();
+        TituloPersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Busqueda por Mote");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+        jLabel1.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Busqueda por Titulo");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, -1, -1));
 
+        BusquedaBtn.setBackground(new java.awt.Color(204, 204, 204));
+        BusquedaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        BusquedaBtn.setForeground(new java.awt.Color(0, 0, 0));
         BusquedaBtn.setText("Buscar");
+        BusquedaBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BusquedaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BusquedaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 90, -1, 30));
+        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 90, 40));
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
+        jButton2.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Atrás");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 240, -1, -1));
-        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 200, -1));
-        getContentPane().add(NombrePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, -1));
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 250, 260, 40));
+        getContentPane().add(TituloPersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 260, 40));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese el titulo de la persona a buscar:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, -1, -1));
 
+        DescendenciaPersonaBtn.setBackground(new java.awt.Color(204, 204, 204));
+        DescendenciaPersonaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        DescendenciaPersonaBtn.setForeground(new java.awt.Color(0, 0, 0));
         DescendenciaPersonaBtn.setText("Descendencia");
+        DescendenciaPersonaBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         DescendenciaPersonaBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DescendenciaPersonaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
+        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 130, 40));
 
+        jLabel3.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione una persona:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, -1, -1));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,6 +208,13 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
         }
     }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.setVisible(false);
+        UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTableT, arbolPrincipal);
+        ui.setLocationRelativeTo(null);
+        ui.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,7 +249,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new UI_BusquedaTitulo(hashTableT, arbolPrincipal).setVisible(true);
+                new UI_BusquedaTitulo(hashTableT, arbolPrincipal, personas).setVisible(true);
             }
         });
     }
@@ -222,10 +258,11 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
-    private javax.swing.JTextField NombrePersonaTxt;
+    private javax.swing.JTextField TituloPersonaTxt;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

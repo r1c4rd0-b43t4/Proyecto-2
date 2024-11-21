@@ -35,12 +35,12 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        CargarJSON = new javax.swing.JButton();
-        CargarJSON1 = new javax.swing.JButton();
+        BuscarNombre = new javax.swing.JButton();
+        ListaGeneracion = new javax.swing.JButton();
         nuevoJSON = new javax.swing.JButton();
         VerRegistro = new javax.swing.JButton();
-        CargarJSON5 = new javax.swing.JButton();
-        CargarJSON6 = new javax.swing.JButton();
+        MostrarAntepasados = new javax.swing.JButton();
+        BuscarTitulo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -48,29 +48,29 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        CargarJSON.setBackground(new java.awt.Color(204, 204, 204));
-        CargarJSON.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        CargarJSON.setForeground(new java.awt.Color(0, 0, 0));
-        CargarJSON.setText("Buscar por nombre");
-        CargarJSON.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        CargarJSON.addActionListener(new java.awt.event.ActionListener() {
+        BuscarNombre.setBackground(new java.awt.Color(204, 204, 204));
+        BuscarNombre.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        BuscarNombre.setForeground(new java.awt.Color(0, 0, 0));
+        BuscarNombre.setText("Buscar por nombre");
+        BuscarNombre.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BuscarNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarJSONActionPerformed(evt);
+                BuscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarJSON, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 190, 50));
+        jPanel1.add(BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 190, 50));
 
-        CargarJSON1.setBackground(new java.awt.Color(204, 204, 204));
-        CargarJSON1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        CargarJSON1.setForeground(new java.awt.Color(0, 0, 0));
-        CargarJSON1.setText("Lista de generación");
-        CargarJSON1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        CargarJSON1.addActionListener(new java.awt.event.ActionListener() {
+        ListaGeneracion.setBackground(new java.awt.Color(204, 204, 204));
+        ListaGeneracion.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        ListaGeneracion.setForeground(new java.awt.Color(0, 0, 0));
+        ListaGeneracion.setText("Lista de generación");
+        ListaGeneracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        ListaGeneracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarJSON1ActionPerformed(evt);
+                ListaGeneracionActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarJSON1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 190, 50));
+        jPanel1.add(ListaGeneracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 100, 190, 50));
 
         nuevoJSON.setBackground(new java.awt.Color(204, 204, 204));
         nuevoJSON.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -96,29 +96,29 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         });
         jPanel1.add(VerRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 190, 50));
 
-        CargarJSON5.setBackground(new java.awt.Color(204, 204, 204));
-        CargarJSON5.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        CargarJSON5.setForeground(new java.awt.Color(0, 0, 0));
-        CargarJSON5.setText("Mostrar antepasados");
-        CargarJSON5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        CargarJSON5.addActionListener(new java.awt.event.ActionListener() {
+        MostrarAntepasados.setBackground(new java.awt.Color(204, 204, 204));
+        MostrarAntepasados.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        MostrarAntepasados.setForeground(new java.awt.Color(0, 0, 0));
+        MostrarAntepasados.setText("Mostrar antepasados");
+        MostrarAntepasados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarJSON5ActionPerformed(evt);
+                MostrarAntepasadosActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarJSON5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 190, 50));
+        jPanel1.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 190, 50));
 
-        CargarJSON6.setBackground(new java.awt.Color(204, 204, 204));
-        CargarJSON6.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        CargarJSON6.setForeground(new java.awt.Color(0, 0, 0));
-        CargarJSON6.setText("Buscar por Título");
-        CargarJSON6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        CargarJSON6.addActionListener(new java.awt.event.ActionListener() {
+        BuscarTitulo.setBackground(new java.awt.Color(204, 204, 204));
+        BuscarTitulo.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        BuscarTitulo.setForeground(new java.awt.Color(0, 0, 0));
+        BuscarTitulo.setText("Buscar por Título");
+        BuscarTitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BuscarTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CargarJSON6ActionPerformed(evt);
+                BuscarTituloActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarJSON6, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 190, 50));
+        jPanel1.add(BuscarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 190, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/menu.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
@@ -137,15 +137,16 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
-        UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal);
+    private void BuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarNombreActionPerformed
+        this.setVisible(false);
+        UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal, personas);
         pantalla.setLocationRelativeTo(null);
         pantalla.setVisible(true);
-    }//GEN-LAST:event_CargarJSONActionPerformed
+    }//GEN-LAST:event_BuscarNombreActionPerformed
 
-    private void CargarJSON1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON1ActionPerformed
+    private void ListaGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaGeneracionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CargarJSON1ActionPerformed
+    }//GEN-LAST:event_ListaGeneracionActionPerformed
 
     private void nuevoJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJSONActionPerformed
           try{
@@ -180,13 +181,16 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_VerRegistroActionPerformed
 
-    private void CargarJSON5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON5ActionPerformed
+    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CargarJSON5ActionPerformed
+    }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
-    private void CargarJSON6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CargarJSON6ActionPerformed
+    private void BuscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTituloActionPerformed
+        this.setVisible(false);
+        UI_BusquedaTitulo pantalla = new UI_BusquedaTitulo(hashTablePrincipal, arbolPrincipal, personas);
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
+    }//GEN-LAST:event_BuscarTituloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,10 +229,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CargarJSON;
-    private javax.swing.JButton CargarJSON1;
-    private javax.swing.JButton CargarJSON5;
-    private javax.swing.JButton CargarJSON6;
+    private javax.swing.JButton BuscarNombre;
+    private javax.swing.JButton BuscarTitulo;
+    private javax.swing.JButton ListaGeneracion;
+    private javax.swing.JButton MostrarAntepasados;
     private javax.swing.JButton VerRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -106,18 +106,64 @@ public class ListaSimple<T> {
     } 
     
     // Se usa si necesitas saber que numeral tiene la persona elegida
-    public Persona BuscarNombreIndividualNumeral (String value, String numeral){
+    public Persona BuscarNombreIndividualNumeral (String value, String numeral, boolean excluirNumeral){
         //try{
         //this.personas_encontradas = new ListaSimple();
         Persona res = new Persona();
         Nodo aux = this.pFirst;
         while (aux != null){
-             res = (Persona) aux.getValor();
-            if (res.getNombre().equals(value) && res.getNumeral().equals(numeral)){
-                //this.personas_encontradas.insertarAlFinal(aux.getValor());
-                //auxPersona = (Persona)aux.getValor();
-                return res;
-            }   
+            res = (Persona) aux.getValor();
+            if(!excluirNumeral){
+                if (res.getNombre().equals(value) && res.getNumeral().equals(numeral)){
+                    return res;
+                } 
+            }
+            else{
+                if (res.getNombre().equals(value) && !res.getNumeral().equals(numeral)){
+                    return res;
+                }
+            }
+            aux = aux.getSiguiente();  
+        }
+        res = null;
+        return res;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
+    // Se usa si necesitas saber que numeral tiene la persona elegida
+    public Persona BuscarHijoXNombre (String value, Persona padre){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona res = new Persona();
+        Nodo aux = this.pFirst;
+        Nodo nodoPadre;
+        boolean encontrado;
+        String auxPadre;
+        
+        while (aux != null){
+            res = (Persona) aux.getValor();
+            
+            if (res.getNombre().equals(value))
+            {
+                encontrado = false;
+                nodoPadre = res.getPadres().getpFirst();
+                
+                while (nodoPadre!=null && !encontrado){
+                    auxPadre = (String) nodoPadre.getValor();
+                    if(auxPadre.contains(padre.getNombre()) || (auxPadre.contains(padre.getMote()) && !padre.getMote().equals(""))){
+                        encontrado = true;
+                    }
+                    nodoPadre = nodoPadre.getSiguiente();
+                }
+                
+                if (encontrado)
+                    return res;
+            }
+            
             aux = aux.getSiguiente();  
         }
         res = null;
@@ -162,6 +208,29 @@ public class ListaSimple<T> {
         while (aux != null){
             Persona res = (Persona) aux.getValor();
             if (res.getNombre().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                lista_personas.insertarAlFinal(auxPersona);
+            }   
+            aux = aux.getSiguiente();  
+        }
+        return lista_personas;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
+    public ListaSimple BuscarTituloLista (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        ListaSimple lista_personas = new ListaSimple();
+        Persona auxPersona = new Persona();
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getTitulo().equals(value)){
                 //this.personas_encontradas.insertarAlFinal(aux.getValor());
                 auxPersona = (Persona)aux.getValor();
                 lista_personas.insertarAlFinal(auxPersona);

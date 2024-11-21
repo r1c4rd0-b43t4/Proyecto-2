@@ -152,19 +152,26 @@ public class Arbol {
      * @return 
      */
     private NodoArbol buscarNodoRecursivo(NodoArbol nodo, Persona persona) {
-        if (nodo == null) {
-            return null;
-        }
-        if (nodo.getPersona().getNombre().equals(persona.getNombre())&& nodo.getPersona().getNumeral().equals(persona.getNumeral())&&nodo.getPersona().getPadres().getpFirst().getValor().equals(persona.getPadres().getpFirst().getValor())) {
-            return nodo;
-        }
-        for (NodoArbol hijo : nodo.obtenerHijos()) {
-            NodoArbol resultado = buscarNodoRecursivo(hijo, persona);
-            if (resultado != null) {
-                return resultado;
+        //try{
+            if (nodo == null) {
+                return null;
             }
+            if (nodo.getPersona().getNombre().equals(persona.getNombre())&& nodo.getPersona().getNumeral().equals(persona.getNumeral())&&nodo.getPersona().getPadres().getpFirst().getValor().equals(persona.getPadres().getpFirst().getValor())) {
+                return nodo;
+            }
+            for (NodoArbol hijo : nodo.obtenerHijos()) {
+                //System.out.println(hijo.getPersona().getNombre() + "-" + persona.getNombre());
+                NodoArbol resultado = buscarNodoRecursivo(hijo, persona);
+                if (resultado != null) {
+                    return resultado;
+                }
+            }
+            return null;
+        /*}
+        catch(Exception e){
+            System.out.println(e.getMessage());
         }
-        return null;
+        return null;*/
     }
     
     /**
