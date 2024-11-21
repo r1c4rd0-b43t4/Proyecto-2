@@ -186,7 +186,8 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_CargarJSON5ActionPerformed
 
     private void CargarJSON6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSON6ActionPerformed
-        // TODO add your handling code here:
+        UI_BusquedaTitulo pantalla = new UI_BusquedaTitulo(hashTablePrincipal, arbolPrincipal);
+        pantalla.setVisible(true);
     }//GEN-LAST:event_CargarJSON6ActionPerformed
 
     /**
