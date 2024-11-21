@@ -195,7 +195,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 BusquedaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 80, 40));
+        getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 140, 40));
 
         Atras.setBackground(new java.awt.Color(204, 204, 204));
         Atras.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -207,8 +207,8 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 AtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
-        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 230, 40));
+        getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 70, 40));
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 230, 50));
         getContentPane().add(NombrePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 40));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
@@ -226,12 +226,12 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 DescendenciaPersonaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 140, 40));
+        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 120, 40));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione una persona:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
         DescendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
         DescendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -243,7 +243,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 DescendenciaPersonaBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 140, 40));
+        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 120, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");

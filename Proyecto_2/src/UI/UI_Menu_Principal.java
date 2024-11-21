@@ -129,7 +129,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarNombreActionPerformed
 
     private void ListaGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaGeneracionActionPerformed
-        // TODO add your handling code here:
+        this.setVisible(false);
+        UI_BusquedaGeneracion pantalla = new UI_BusquedaGeneracion(hashTablePrincipal, arbolPrincipal, personas);
+        pantalla.setLocationRelativeTo(null);
+        pantalla.setVisible(true);
     }//GEN-LAST:event_ListaGeneracionActionPerformed
 
     private void nuevoJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJSONActionPerformed
