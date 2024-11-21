@@ -5,9 +5,6 @@ import Carga.Reader;
 import Main.ListaSimple;
 import javax.swing.JOptionPane;
 import Main.*;
-
-import Main.NodoArbol;
-import Main.Persona;
  /**
  *
  * @author rdbae

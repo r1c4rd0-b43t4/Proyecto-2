@@ -8,11 +8,7 @@ import Main.HashTable;
 import Main.Nodo;
 import Main.Arbol;
 import Main.ArbolGraphJGraphT;
-import Main.NodoArbol;
 import Main.Persona;
-import static UI.UI_BusquedaTitulo.arbolPrincipal;
-import static UI.UI_BusquedaTitulo.hashTableT;
-import static UI.UI_BusquedaTitulo.personas;
 import javax.swing.JOptionPane;
 
 /**
@@ -24,16 +20,20 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     static Arbol arbolPrincipal;
     static Arbol subArbol;
     static ListaSimple lista_personas;
+    static ListaSimple personas;
+    
     /**
      * Creates new form BusquedaNombre
      * @param hashTableT_Param
      * @param arbolPrincipal_Param
      */
-    public UI_BusquedaNombre(HashTable hashTableT_Param, Arbol arbolPrincipal_Param, ListaSimple personas1) {
+    public UI_BusquedaNombre(HashTable hashTableT_Param, Arbol arbolPrincipal_Param, ListaSimple personas_Param) {
         initComponents();
         hashTableT = hashTableT_Param;
         arbolPrincipal = arbolPrincipal_Param;
+        personas = personas_Param;
         lista_personas = new ListaSimple();
+
         
     }
     
@@ -170,7 +170,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         BusquedaBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Atras = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
         NombrePersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -198,17 +198,17 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         });
         getContentPane().add(BusquedaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 80, 40));
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
-        jButton2.setText("Atrás");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Atras.setBackground(new java.awt.Color(204, 204, 204));
+        Atras.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        Atras.setForeground(new java.awt.Color(0, 0, 0));
+        Atras.setText("Atrás");
+        Atras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                AtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
+        getContentPane().add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 320, 70, 40));
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 230, 40));
         getContentPane().add(NombrePersonaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 230, 40));
 
@@ -265,12 +265,12 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         this.setVisible(false);
-        UI_Menu_Principal ui = new UI_Menu_Principal(lista_personas, hashTableT, arbolPrincipal);
+        UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTableT, arbolPrincipal);
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -309,11 +309,11 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Atras;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
     private javax.swing.JTextField NombrePersonaTxt;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
