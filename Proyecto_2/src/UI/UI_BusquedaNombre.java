@@ -176,6 +176,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        DescendenciaPersonaBtn1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -227,12 +228,24 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 DescendenciaPersonaBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 140, 40));
+        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione una persona:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 200, -1, -1));
+
+        DescendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
+        DescendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        DescendenciaPersonaBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        DescendenciaPersonaBtn1.setText("Ascendencia");
+        DescendenciaPersonaBtn1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        DescendenciaPersonaBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DescendenciaPersonaBtn1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 140, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -271,6 +284,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
     }//GEN-LAST:event_AtrasActionPerformed
+
+    private void DescendenciaPersonaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescendenciaPersonaBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,6 +330,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
+    private javax.swing.JButton DescendenciaPersonaBtn1;
     private javax.swing.JTextField NombrePersonaTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

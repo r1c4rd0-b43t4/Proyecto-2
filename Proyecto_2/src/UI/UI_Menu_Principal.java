@@ -36,7 +36,6 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         ListaGeneracion = new javax.swing.JButton();
         nuevoJSON = new javax.swing.JButton();
         VerRegistro = new javax.swing.JButton();
-        MostrarAntepasados = new javax.swing.JButton();
         BuscarTitulo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -55,7 +54,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
                 BuscarNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 190, 50));
+        jPanel1.add(BuscarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 230, 190, 50));
 
         ListaGeneracion.setBackground(new java.awt.Color(204, 204, 204));
         ListaGeneracion.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -92,18 +91,6 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(VerRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 190, 50));
-
-        MostrarAntepasados.setBackground(new java.awt.Color(204, 204, 204));
-        MostrarAntepasados.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        MostrarAntepasados.setForeground(new java.awt.Color(0, 0, 0));
-        MostrarAntepasados.setText("Mostrar antepasados");
-        MostrarAntepasados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        MostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MostrarAntepasadosActionPerformed(evt);
-            }
-        });
-        jPanel1.add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 190, 50));
 
         BuscarTitulo.setBackground(new java.awt.Color(204, 204, 204));
         BuscarTitulo.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
@@ -178,10 +165,6 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_VerRegistroActionPerformed
 
-    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MostrarAntepasadosActionPerformed
-
     private void BuscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTituloActionPerformed
         this.setVisible(false);
         UI_BusquedaTitulo pantalla = new UI_BusquedaTitulo(hashTablePrincipal, arbolPrincipal, personas);
@@ -229,7 +212,6 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JButton BuscarNombre;
     private javax.swing.JButton BuscarTitulo;
     private javax.swing.JButton ListaGeneracion;
-    private javax.swing.JButton MostrarAntepasados;
     private javax.swing.JButton VerRegistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
