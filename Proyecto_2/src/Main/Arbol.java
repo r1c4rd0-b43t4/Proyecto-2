@@ -29,21 +29,21 @@ public class Arbol {
         Persona raizPersona = buscarRaiz(listaPersonas);
         if (raizPersona == null) {
             //no se encuentra
-            return;
+            throw new IllegalStateException("No se encuentra raiz");
         }
     
         // Crear la raiz
         NodoArbol raizNodo = new NodoArbol(raizPersona);
         this.setRaiz(raizNodo);
-       
-        
 
-        
         procesarNodo(raizNodo, listaPersonas);
-             
-    System.out.println(this.contarPersonas());
-}
+    }   
 
+    /**
+     * Metodo para procesar los elementos del Json, crear el nodo que los contiene asignar sus relaciones y si ya existe.
+     * @param nodoPadre
+     * @param listaPersonas 
+     */
     private void procesarNodo(NodoArbol nodoPadre, ListaSimple<Persona> listaPersonas) {
         Persona personaPadre = nodoPadre.getPersona();
 
@@ -55,20 +55,28 @@ public class Arbol {
                 if (esHijoDe(persona, personaPadre)&& !aver) {
                     NodoArbol nodoHijo = new NodoArbol(persona);                   
                     nodoPadre.agregarHijo(nodoHijo);
-                    
-                    System.out.println("Asignado hijo: " + persona.getNombre() + persona.getNumeral() + " a padre: " + personaPadre.getNombre()+personaPadre.getNumeral());
+
                     // Recursivamente procesar los hijos del nuevo nodo
                     procesarNodo(nodoHijo, listaPersonas);
                 }
             }
             actual = actual.getSiguiente();
         }
-}
-        
+    }
+    
+    /**
+     * Muestra las personas que hay en el arbol
+     * @return 
+     */    
     public int contarPersonas() {
         return contarPersonasRecursivo(raiz);
     }
-
+    
+    /**
+     * recorre el arbol con un contador para devolver el numero de nodos que hay en este.
+     * @param nodo
+     * @return 
+     */
     private int contarPersonasRecursivo(NodoArbol nodo) {
         if (nodo == null) {
             return 0;
@@ -80,6 +88,12 @@ public class Arbol {
         return count;
     }
     
+    /**
+     * Metodo para ver si un nodo es hijo del otro
+     * @param hijo
+     * @param padre
+     * @return 
+     */
     private boolean esHijoDe(Persona hijo, Persona padre) {
         Nodo<String> padreActual = hijo.getPadres().getpFirst();
         while (padreActual != null) {
@@ -101,13 +115,20 @@ public class Arbol {
         return false;
     }
 
-
-
+    /**
+     * revisa si una persona existe en el arbol
+     * @param persona
+     * @return 
+     */
     public boolean existePersona(Persona persona) {
         return buscarNodo(persona) != null;
     }
 
-    
+    /**
+     * Busca la raíz en el Json buscando el que tenga como padre unknown
+     * @param listaPersonas
+     * @return 
+     */
     private Persona buscarRaiz(ListaSimple<Persona> listaPersonas) {
         Nodo<Persona> actual = listaPersonas.getpFirst();
             while (actual != null) {
@@ -146,7 +167,6 @@ public class Arbol {
         }
     }
 
-    
     /**
      * Constructor
      */
@@ -160,8 +180,6 @@ public class Arbol {
     public void setRaiz(NodoArbol raiz) {
         this.raiz = raiz;
     }
-    
-    
     
     /**
      * Metodo para buscar solo por persona
@@ -194,11 +212,7 @@ public class Arbol {
                 }
             }
             return null;
-        /*}
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return null;*/
+
     }
     
     /**
@@ -245,6 +259,7 @@ public class Arbol {
             return null;
         }
     }
+    
     /**
      * Metodo que devuelve el array de los antepasados del nodo buscado
      * @param persona
