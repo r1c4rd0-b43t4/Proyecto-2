@@ -205,7 +205,6 @@ public class Arbol {
                 return nodo;
             }
             for (NodoArbol hijo : nodo.obtenerHijos()) {
-                //System.out.println(hijo.getPersona().getNombre() + "-" + persona.getNombre());
                 NodoArbol resultado = buscarNodoRecursivo(hijo, persona);
                 if (resultado != null) {
                     return resultado;
