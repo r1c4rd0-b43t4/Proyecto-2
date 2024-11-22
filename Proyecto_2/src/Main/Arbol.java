@@ -23,6 +23,8 @@ public class Arbol {
      * @param listaPersonas 
      */
     public void construirArbol(ListaSimple<Persona> listaPersonas) {
+        //revision de si el arbol tiene algun nodo con dos padres
+        this.verificarDuplicados(listaPersonas);
         // Identificar la raíz
         Persona raizPersona = buscarRaiz(listaPersonas);
         if (raizPersona == null) {
@@ -38,7 +40,7 @@ public class Arbol {
 
         
         procesarNodo(raizNodo, listaPersonas);
-
+             
     System.out.println(this.contarPersonas());
 }
 
@@ -51,7 +53,7 @@ public class Arbol {
             if (!persona.equals(personaPadre)) {
                 boolean aver = this.existePersona(persona);
                 if (esHijoDe(persona, personaPadre)&& !aver) {
-                    NodoArbol nodoHijo = new NodoArbol(persona);
+                    NodoArbol nodoHijo = new NodoArbol(persona);                   
                     nodoPadre.agregarHijo(nodoHijo);
                     
                     System.out.println("Asignado hijo: " + persona.getNombre() + persona.getNumeral() + " a padre: " + personaPadre.getNombre()+personaPadre.getNumeral());
@@ -117,6 +119,31 @@ public class Arbol {
                 actual = actual.getSiguiente();
             }
         return null;
+    }
+    
+    /**
+    * Verifica si hay duplicados en la lista de personas del árbol.
+    * @param listaPersonas La lista de personas a verificar.
+    * @throws IllegalStateException si se encuentra una persona duplicada (mismo nombre y numeral).
+    */
+    public void verificarDuplicados(ListaSimple<Persona> listaPersonas) {
+        Nodo<Persona> actual = listaPersonas.getpFirst();
+
+        while (actual != null) {
+            Persona persona1 = actual.getValor();
+            Nodo<Persona> siguiente = actual.getSiguiente();
+
+            while (siguiente != null) {
+                Persona persona2 = siguiente.getValor();
+                if (persona1.getNombre().equals(persona2.getNombre()) && 
+                    persona1.getNumeral().equals(persona2.getNumeral())) {
+                    throw new IllegalStateException("Persona duplicada encontrada: " + persona1.getNombre() + "-" + persona1.getNumeral());
+                }
+                siguiente = siguiente.getSiguiente();
+            }
+
+            actual = actual.getSiguiente();
+        }
     }
 
     
