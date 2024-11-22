@@ -3,13 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package UI;
-import Main.ListaSimple;
-import Main.HashTable;
-import Main.Nodo;
-import Main.Arbol;
-import Main.ArbolGraphJGraphT;
-import Main.NodoArbol;
-import Main.Persona;
+import Main.*;
 import javax.swing.JOptionPane;
 
 /**
@@ -151,7 +145,7 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
             Nodo<Persona> nodo = integrantesGeneracion.getpFirst();
             while (nodo != null) {
                 Persona persona = nodo.getValor();
-                mensaje.append(persona.getNombre()).append(" ").append(persona.getApellido()).append("\n");
+                mensaje.append(persona.getNombre()+"\n");
                 nodo = nodo.getSiguiente();
             }
             JOptionPane.showMessageDialog(this, mensaje.toString(), "Integrantes de la Generación " + (generacionSeleccionada + 1), JOptionPane.INFORMATION_MESSAGE);

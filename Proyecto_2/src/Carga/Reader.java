@@ -22,6 +22,8 @@ public class Reader {
         File doc_data;
         ListaSimple ListaPersonas = new ListaSimple();  
 
+
+
         JFileChooser fc = new JFileChooser();
         FileNameExtensionFilter filtro_json = new FileNameExtensionFilter(".json", "json");
         fc.setFileFilter(filtro_json);
@@ -44,6 +46,7 @@ public class Reader {
                     }
 
                     try {
+
                         Gson gson = new Gson();
                         Map<String, List<Map<String, List<Map<String, Object>>>>> houseMap = gson.fromJson(
                                 texto.toString(),
@@ -51,7 +54,9 @@ public class Reader {
                         );
 
                         houseMap.forEach((house, members) -> {
-                            System.out.println("House: " + house);
+
+
+                            String casa = house;
                             int indice = house.lastIndexOf(" ");
                             String apellido = house.substring(indice);
                             for (Map<String, List<Map<String, Object>>> member : members) {
@@ -110,8 +115,9 @@ public class Reader {
                                     Persona persona = new Persona(nombre, apellido, numeral, padres, mote, titulo, conyuge, color_ojos, color_pelo, hijos, notas, destino);
                                     ListaPersonas.insertarAlFinal(persona);
                                 });
-                            }
+                            }JOptionPane.showMessageDialog(null, "La Casa " + casa + " está siendo cargada.");
                         });
+                        
                         return ListaPersonas;
                     } catch (JsonSyntaxException e) {
                         JOptionPane.showMessageDialog(null, "El archivo JSON no es válido: " + e.getMessage());

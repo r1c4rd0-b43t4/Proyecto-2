@@ -4,6 +4,8 @@
  */
 package Main;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author reneb
@@ -29,7 +31,9 @@ public class Arbol {
         Persona raizPersona = buscarRaiz(listaPersonas);
         if (raizPersona == null) {
             //no se encuentra
+            JOptionPane.showMessageDialog(null, "No se encuentra raiz");
             throw new IllegalStateException("No se encuentra raiz");
+
         }
     
         // Crear la raiz
@@ -158,6 +162,7 @@ public class Arbol {
                 Persona persona2 = siguiente.getValor();
                 if (persona1.getNombre().equals(persona2.getNombre()) && 
                     persona1.getNumeral().equals(persona2.getNumeral())) {
+                    JOptionPane.showMessageDialog(null, "Persona duplicada encontrada: " + persona1.getNombre() + "-" + persona1.getNumeral());
                     throw new IllegalStateException("Persona duplicada encontrada: " + persona1.getNombre() + "-" + persona1.getNumeral());
                 }
                 siguiente = siguiente.getSiguiente();

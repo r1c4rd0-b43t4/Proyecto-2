@@ -127,10 +127,6 @@ public class ListaSimple<T> {
         }
         res = null;
         return res;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
         
     }
     
@@ -168,11 +164,7 @@ public class ListaSimple<T> {
         }
         res = null;
         return res;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
-        
+
     }
     
     
@@ -192,10 +184,6 @@ public class ListaSimple<T> {
             aux = aux.getSiguiente();  
         }
         return null;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
         
     }
     
@@ -219,9 +207,6 @@ public class ListaSimple<T> {
         else
             return null;
         //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
         
     }
     
@@ -240,10 +225,6 @@ public class ListaSimple<T> {
             aux = aux.getSiguiente();  
         }
         return null;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
         
     }
     
@@ -266,10 +247,7 @@ public class ListaSimple<T> {
             return lista_personas;
         else
             return null;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
+      
         
     }
     
@@ -347,11 +325,7 @@ public class ListaSimple<T> {
         }
         res = null;
         return res;
-        //}
-        /*catch(Exception e){
-            System.out.println(e.getMessage());
-        }*/
-        
+
     }
 
 }

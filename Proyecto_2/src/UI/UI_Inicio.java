@@ -88,7 +88,7 @@ public class UI_Inicio extends javax.swing.JFrame {
         
         hashTablePrincipal.CargarHashTable(personas);
         arbolPrincipal.construirArbol(personas);
-        JOptionPane.showMessageDialog(this, "La carga fue un exito");  
+        JOptionPane.showMessageDialog(this, "La carga fué un éxito.");  
 
         this.setVisible(false);
         UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTablePrincipal, arbolPrincipal);
@@ -96,7 +96,7 @@ public class UI_Inicio extends javax.swing.JFrame {
         ui.setVisible(true);
         }
         catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Error durante la carga");  
+            JOptionPane.showMessageDialog(this, "Error durante la carga.");  
         }  
     }//GEN-LAST:event_CargarJSONActionPerformed
     

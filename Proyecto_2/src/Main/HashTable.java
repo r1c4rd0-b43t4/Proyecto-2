@@ -62,7 +62,6 @@ public class HashTable {
         while (aux != null){
             personaObj = (Persona)aux.getValor();
             this.insertarHash(personaObj);
-            System.out.println(personaObj.getNombre());
             aux = aux.getSiguiente();
         }
     }
