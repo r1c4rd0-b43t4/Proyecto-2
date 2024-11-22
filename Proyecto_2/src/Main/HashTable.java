@@ -72,4 +72,17 @@ public class HashTable {
             this.getArregloHash()[i].limpiarLista();
         }
     }
+    
+    public Persona BuscarMote(String value){
+        Persona auxPersona = null;
+    
+        for(int a=0;a<this.getArregloHash().length;a++){
+            if (this.getArregloHash()[a] != null){
+                auxPersona = this.getArregloHash()[a].BuscarMoteIndividual(value);
+                if(auxPersona!=null)
+                    break;
+            }
+        }
+        return auxPersona;
+    }
 }

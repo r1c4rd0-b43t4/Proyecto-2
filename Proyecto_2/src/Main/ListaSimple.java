@@ -180,7 +180,7 @@ public class ListaSimple<T> {
     public Persona BuscarNombreIndividual (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
-        Persona auxPersona = new Persona();
+        Persona auxPersona;
         Nodo aux = this.pFirst;
         while (aux != null){
             Persona res = (Persona) aux.getValor();
@@ -191,7 +191,7 @@ public class ListaSimple<T> {
             }   
             aux = aux.getSiguiente();  
         }
-        return auxPersona;
+        return null;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
@@ -218,6 +218,28 @@ public class ListaSimple<T> {
             return lista_personas;
         else
             return null;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
+    }
+    
+    public Persona BuscarMoteIndividual (String value){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona auxPersona;
+        Nodo aux = this.pFirst;
+        while (aux != null){
+            Persona res = (Persona) aux.getValor();
+            if (res.getMote().equals(value)){
+                //this.personas_encontradas.insertarAlFinal(aux.getValor());
+                auxPersona = (Persona)aux.getValor();
+                return auxPersona;
+            }   
+            aux = aux.getSiguiente();  
+        }
+        return null;
         //}
         /*catch(Exception e){
             System.out.println(e.getMessage());
@@ -289,6 +311,47 @@ public class ListaSimple<T> {
             prev.setSiguiente(null);
         }
         this.pFirst = null;
+    }
+    
+    public Persona BuscarPadreXNombre (String value, Persona hijo){
+        //try{
+        //this.personas_encontradas = new ListaSimple();
+        Persona res;
+        Nodo aux = this.pFirst;
+        Nodo nodoHijo;
+        boolean encontrado;
+        String auxHijo;
+        
+        
+        while (aux != null){
+            res = (Persona) aux.getValor();
+            
+            if (res.getNombre().equals(value))
+            {
+                encontrado = false;
+                nodoHijo = res.getHijos().getpFirst();
+                
+                while (nodoHijo!=null && !encontrado){
+                    auxHijo = (String) nodoHijo.getValor();
+                    if(hijo.getNombre().contains(auxHijo)){
+                        encontrado = true;
+                    }
+                    nodoHijo = nodoHijo.getSiguiente();
+                }
+                
+                if (encontrado)
+                    return res;
+            }
+            
+            aux = aux.getSiguiente();  
+        }
+        res = null;
+        return res;
+        //}
+        /*catch(Exception e){
+            System.out.println(e.getMessage());
+        }*/
+        
     }
 
 }
