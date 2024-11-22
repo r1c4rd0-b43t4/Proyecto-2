@@ -156,52 +156,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona, intente nuevamente" );
         }
     }
-    
-    public void ArbolAscendencia(String datoPersona, String numeral, Persona hijo){
-        try{
-            //System.out.println("DESCENDENCIA");
-            Persona auxPersona;
-            String auxPadre;
-            Nodo nodoPadre;
-            int postCom;
-            if (!datoPersona.equals("") ){
-                int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(datoPersona));
-                if(!numeral.equals(""))
-                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(datoPersona, numeral, false);
-                else{
-                    postCom = datoPersona.indexOf(",");
-                    if(postCom!= -1){
-                        datoPersona = datoPersona.substring(0, postCom);
-                    }
-                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarPadreXNombre(datoPersona, hijo);
-                }
-                if(auxPersona == null){
-                    auxPersona = this.hashTableT.BuscarMote(datoPersona);
-                }
-                
-                if (auxPersona != null){
-                    if (hijo==null){
-                        subArbol = new Arbol(auxPersona);
-                        
-                    }
-                    else{
-                        this.subArbol.agregarNodo(hijo, auxPersona );
-                        
-                    }
-                    
-                    nodoPadre = auxPersona.getPadres().getpFirst();    
-                    while (nodoPadre!=null){
-                        auxPadre = (String) nodoPadre.getValor();
-                        this.ArbolAscendencia(auxPadre, "", auxPersona);
-                        nodoPadre = nodoPadre.getSiguiente();
-                    }
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -220,7 +174,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        AscendenciaPersonaBtn1 = new javax.swing.JButton();
+        DescendenciaPersonaBtn1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -279,17 +233,17 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel3.setText("Seleccione una persona:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
-        AscendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
-        AscendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        AscendenciaPersonaBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        AscendenciaPersonaBtn1.setText("Ascendencia");
-        AscendenciaPersonaBtn1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        AscendenciaPersonaBtn1.addActionListener(new java.awt.event.ActionListener() {
+        DescendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
+        DescendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        DescendenciaPersonaBtn1.setForeground(new java.awt.Color(0, 0, 0));
+        DescendenciaPersonaBtn1.setText("Mostrar Antepasados");
+        DescendenciaPersonaBtn1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        DescendenciaPersonaBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AscendenciaPersonaBtn1ActionPerformed(evt);
+                DescendenciaPersonaBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(AscendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 120, 40));
+        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -329,21 +283,9 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         ui.setVisible(true);
     }//GEN-LAST:event_AtrasActionPerformed
 
-    private void AscendenciaPersonaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AscendenciaPersonaBtn1ActionPerformed
-         try{
-            String nom1 = this.ComboBox.getSelectedItem().toString();
-            String[] persona = nom1.split("-"); 
-            String nombrePersona = persona[0].trim();
-            //Arbol subArbol = new Arbol();
-            System.out.println("INICIO");
-            this.ArbolAscendencia(nombrePersona , persona[1].substring(1), null);
-            System.out.println("FINAL");
-            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
-        }
-        catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
-        }
-    }//GEN-LAST:event_AscendenciaPersonaBtn1ActionPerformed
+    private void DescendenciaPersonaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtn1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DescendenciaPersonaBtn1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,11 +324,11 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AscendenciaPersonaBtn1;
     private javax.swing.JButton Atras;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
+    private javax.swing.JButton DescendenciaPersonaBtn1;
     private javax.swing.JTextField NombrePersonaTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
