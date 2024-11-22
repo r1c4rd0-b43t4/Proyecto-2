@@ -236,14 +236,14 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         DescendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
         DescendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
         DescendenciaPersonaBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        DescendenciaPersonaBtn1.setText("Ascendencia");
+        DescendenciaPersonaBtn1.setText("Mostrar Antepasados");
         DescendenciaPersonaBtn1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         DescendenciaPersonaBtn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DescendenciaPersonaBtn1ActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, 120, 40));
+        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
