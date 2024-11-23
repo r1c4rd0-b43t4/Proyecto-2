@@ -145,8 +145,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                 return;
             }
 
-            auxNodo = lista_personas.getpFirst();
-            //Hay que validar cuando no se encuentra una persona    
+            auxNodo = lista_personas.getpFirst();   
             while(auxNodo!=null){
                 auxPersona = (Persona)auxNodo.getValor();
                 if (auxPersona != null)
