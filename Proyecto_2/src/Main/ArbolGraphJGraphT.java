@@ -139,47 +139,52 @@ public class ArbolGraphJGraphT {
      * @param id 
      */
     private void mostrarInformacionNodo(String id) {
-        String[] parts = id.split("-");
-        if (parts.length == 2) {
-            String nombre = parts[0];
-            String numeral = parts[1];
-            int indice = personasHash.getIndice(personasHash.returnAsciiCode(nombre));
-            ListaSimple<Persona> listaPersonas = personasHash.getArregloHash()[indice];
-            Persona persona = listaPersonas.BuscarNombreIndividualNumeral(nombre, numeral, false);
+        try{    
+            String[] parts = id.split("-");
+            if (parts.length == 2) {
+                String nombre = parts[0];
+                String numeral = parts[1];
+                int indice = personasHash.getIndice(personasHash.returnAsciiCode(nombre));
+                ListaSimple<Persona> listaPersonas = personasHash.getArregloHash()[indice];
+                Persona persona = listaPersonas.BuscarNombreIndividualNumeral(nombre, numeral, false);
 
-            if (persona != null) {
-                StringBuilder info = new StringBuilder();
-                info.append("Nombre: ").append(persona.getNombre()).append("\n");
-                info.append("Apellido: ").append(persona.getApellido()).append("\n");
-                info.append("Numeral: ").append(persona.getNumeral()).append("\n");
-                info.append("Mote: ").append(persona.getMote()).append("\n");
-                info.append("Título: ").append(persona.getTitulo()).append("\n");
-                info.append("Cónyuge: ").append(persona.getConyuge()).append("\n");
-                info.append("Color de Ojos: ").append(persona.getColor_ojos()).append("\n");
-                info.append("Color de Pelo: ").append(persona.getColor_pelo()).append("\n");
-                info.append("Destino: ").append(persona.getDestino()).append("\n");
-                info.append("Notas: ").append(persona.getNotas()).append("\n");
+                if (persona != null) {
+                    StringBuilder info = new StringBuilder();
+                    info.append("Nombre: ").append(persona.getNombre()).append("\n");
+                    info.append("Apellido: ").append(persona.getApellido()).append("\n");
+                    info.append("Numeral: ").append(persona.getNumeral()).append("\n");
+                    info.append("Mote: ").append(persona.getMote()).append("\n");
+                    info.append("Título: ").append(persona.getTitulo()).append("\n");
+                    info.append("Cónyuge: ").append(persona.getConyuge()).append("\n");
+                    info.append("Color de Ojos: ").append(persona.getColor_ojos()).append("\n");
+                    info.append("Color de Pelo: ").append(persona.getColor_pelo()).append("\n");
+                    info.append("Destino: ").append(persona.getDestino()).append("\n");
+                    info.append("Notas: ").append(persona.getNotas()).append("\n");
 
-                info.append("Padres:\n");
-                Nodo<String> padreNodo = persona.getPadres().getpFirst();
-                while (padreNodo != null) {
-                    String padre = padreNodo.getValor();
-                    info.append("\t").append(padre).append("\n");
-                    padreNodo = padreNodo.getSiguiente();
+                    info.append("Padres:\n");
+                    Nodo<String> padreNodo = persona.getPadres().getpFirst();
+                    while (padreNodo != null) {
+                        String padre = padreNodo.getValor();
+                        info.append("\t").append(padre).append("\n");
+                        padreNodo = padreNodo.getSiguiente();
+                    }
+
+                    info.append("Hijos:\n");
+                    Nodo<String> hijoNodo = persona.getHijos().getpFirst();
+                    while (hijoNodo != null) {
+                        String hijo = hijoNodo.getValor();
+                        info.append("\t").append(hijo).append("\n");
+                        hijoNodo = hijoNodo.getSiguiente();
+                    }
+
+                    JOptionPane.showMessageDialog(null, info.toString(), "Información de " + persona.getNombre(), JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró información asociada al nodo.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-
-                info.append("Hijos:\n");
-                Nodo<String> hijoNodo = persona.getHijos().getpFirst();
-                while (hijoNodo != null) {
-                    String hijo = hijoNodo.getValor();
-                    info.append("\t").append(hijo).append("\n");
-                    hijoNodo = hijoNodo.getSiguiente();
-                }
-
-                JOptionPane.showMessageDialog(null, info.toString(), "Información de " + persona.getNombre(), JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró información asociada al nodo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se encontró información asociada al nodo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
