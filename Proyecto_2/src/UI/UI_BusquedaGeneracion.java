@@ -1,14 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package UI;
+
 import Main.*;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author HP
+ *Clase UI_BusquedaGeneracion JForm.
+ * 
  */
 public class UI_BusquedaGeneracion extends javax.swing.JFrame {
     static HashTable hashTableT;
@@ -18,7 +15,7 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
     static ListaSimple personas;
     
     /**
-     * Creates new form BusquedaNombre
+     * Creates new form BusquedaNombre.
      * @param hashTableT_Param
      * @param arbolPrincipal_Param
      */
@@ -32,14 +29,23 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
         
     }
     
-    private void cargarGeneraciones() {
+    /**
+     * Método que carga las generaciones de un Arbol.
+     * 
+     */
+    public void cargarGeneraciones() {
         int cantidadGeneraciones = obtenerCantidadGeneraciones(arbolPrincipal.getRaiz());
         for (int i = 0; i < cantidadGeneraciones; i++) {
             ComboBox.addItem("Generación " + (i + 1));
         }
     }
     
-    private int obtenerCantidadGeneraciones(NodoArbol nodo) {
+    /**
+     * Método que obtiene la cantidad de generaciones en un Arbol.
+     * @param nodo
+     * @return 
+     */
+    public int obtenerCantidadGeneraciones(NodoArbol nodo) {
         if (nodo == null) {
             return 0;
         }
@@ -53,13 +59,26 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
         return maxGeneracion + 1;
     }
     
-    private ListaSimple<Persona> obtenerIntegrantesGeneracion(NodoArbol nodo, int generacion) {
+    /**
+     * Método que obtiene los integrantes que pertenecen a una generación.
+     * @param nodo
+     * @param generacion
+     * @return 
+     */
+    public ListaSimple<Persona> obtenerIntegrantesGeneracion(NodoArbol nodo, int generacion) {
         ListaSimple<Persona> lista = new ListaSimple<>();
         obtenerIntegrantesGeneracion(nodo, generacion, 0, lista);
         return lista;
     }
     
-        private void obtenerIntegrantesGeneracion(NodoArbol nodo, int generacionObjetivo, int generacionActual, ListaSimple<Persona> lista) {
+    /**
+     * Método que obtiene los integrantes de una generación pero de una generacion especificada.
+     * @param nodo
+     * @param generacionObjetivo
+     * @param generacionActual
+     * @param lista 
+     */
+    public void obtenerIntegrantesGeneracion(NodoArbol nodo, int generacionObjetivo, int generacionActual, ListaSimple<Persona> lista) {
         if (nodo == null) {
             return;
         }
@@ -137,6 +156,10 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para visualizar los integrantes de una generación en un ComboBox.
+     * @param evt 
+     */
     private void VerIntegrantesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerIntegrantesActionPerformed
          try {
             int generacionSeleccionada = ComboBox.getSelectedIndex();
@@ -156,6 +179,10 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
 
     }//GEN-LAST:event_VerIntegrantesActionPerformed
 
+    /**
+     * Botón para volver al menú principal
+     * @param evt 
+     */
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         this.setVisible(false);
         UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTableT, arbolPrincipal);
@@ -164,6 +191,7 @@ public class UI_BusquedaGeneracion extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasActionPerformed
 
     /**
+     * Main UI.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

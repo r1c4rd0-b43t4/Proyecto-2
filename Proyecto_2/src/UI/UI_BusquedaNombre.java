@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package UI;
+
 import Main.ListaSimple;
 import Main.HashTable;
 import Main.Nodo;
@@ -12,8 +9,8 @@ import Main.Persona;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author HP
+ *Clase UI_BusquedaNombre JForm.
+ * 
  */
 public class UI_BusquedaNombre extends javax.swing.JFrame {
     static HashTable hashTableT;
@@ -23,7 +20,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     static ListaSimple personas;
     
     /**
-     * Creates new form BusquedaNombre
+     * Creates new form BusquedaNombre.
      * @param hashTableT_Param
      * @param arbolPrincipal_Param
      */
@@ -37,9 +34,15 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         
     }
     
+    /**
+     * Método que crea un SubArbol según la descendencia de un objeto Persona en el Arbol principal.
+     * @param padre
+     * @param nombrePersona
+     * @param numeral
+     * @param isPadre 
+     */
     public void ArbolDescendencia(Persona padre, String nombrePersona, String numeral, boolean isPadre){
         try{
-            //System.out.println("DESCENDENCIA");
             ListaSimple lista_personas;
             Persona auxPersona;
             Nodo auxNodo;
@@ -91,10 +94,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                                 hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividualNumeral(nombreHijo, auxPersona.getNumeral(), true);
                             }
                             else{
-                                /*if(nombreHijo.equals(padre.getNombre()))
-                                    hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividualNumeral(nombreHijo, auxPersona.getNumeral(), true);
-                                else
-                                    hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividual(nombreHijo);*/
                                 hijo = this.hashTableT.getArregloHash()[a].BuscarHijoXNombre(nombreHijo, auxPersona);
                             }
                                 
@@ -107,7 +106,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
                             if(hijo.getNombre()!=null)
                                 this.ArbolDescendencia(auxPersona, hijo.getNombre(), hijo.getNumeral(), false);
 
-                            //System.out.println(hijo.getNombre());
                             auxNodo = auxNodo.getSiguiente();
                         }
                     }
@@ -126,6 +124,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Método que busca una persona en la Lista Simple de personas principal.
+     * 
+     */
     public void BusquedaPersona(){
         Persona auxPersona;
         ListaSimple lista_personas;
@@ -174,7 +176,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         DescendenciaPersonaBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        DescendenciaPersonaBtn1 = new javax.swing.JButton();
+        MostrarAntepasados = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -233,17 +235,17 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         jLabel3.setText("Seleccione una persona:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, -1, -1));
 
-        DescendenciaPersonaBtn1.setBackground(new java.awt.Color(204, 204, 204));
-        DescendenciaPersonaBtn1.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        DescendenciaPersonaBtn1.setForeground(new java.awt.Color(0, 0, 0));
-        DescendenciaPersonaBtn1.setText("Mostrar Antepasados");
-        DescendenciaPersonaBtn1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        DescendenciaPersonaBtn1.addActionListener(new java.awt.event.ActionListener() {
+        MostrarAntepasados.setBackground(new java.awt.Color(204, 204, 204));
+        MostrarAntepasados.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        MostrarAntepasados.setForeground(new java.awt.Color(0, 0, 0));
+        MostrarAntepasados.setText("Mostrar Antepasados");
+        MostrarAntepasados.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MostrarAntepasados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DescendenciaPersonaBtn1ActionPerformed(evt);
+                MostrarAntepasadosActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 280, 180, 40));
+        getContentPane().add(MostrarAntepasados, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 180, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/fondo.png"))); // NOI18N
         jLabel4.setText("jLabel4");
@@ -252,6 +254,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para iniciar la búsqueda con un ComboBox.
+     * @param evt 
+     */
     private void BusquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBtnActionPerformed
         this.ComboBox.removeAllItems();
         this.BusquedaPersona();
@@ -260,6 +266,10 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BusquedaBtnActionPerformed
 
+    /**
+     * Botón para buscar la descendencia de una persona en el Arbol.
+     * @param evt 
+     */
     private void DescendenciaPersonaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtnActionPerformed
         try{
             String nom1 = this.ComboBox.getSelectedItem().toString();
@@ -276,18 +286,27 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
 
+    /**
+     * Botón para volver al menú principal.
+     * @param evt 
+     */
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         this.setVisible(false);
         UI_Menu_Principal ui = new UI_Menu_Principal(personas, hashTableT, arbolPrincipal);
         ui.setLocationRelativeTo(null);
         ui.setVisible(true);
     }//GEN-LAST:event_AtrasActionPerformed
-
-    private void DescendenciaPersonaBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtn1ActionPerformed
+    
+    /**
+     * Botón que inica la acción de mostrar los antepasados de un objeto persona en el Arbol principal.
+     * @param evt 
+     */
+    private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_DescendenciaPersonaBtn1ActionPerformed
+    }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
     /**
+     * Main UI
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -328,7 +347,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton DescendenciaPersonaBtn;
-    private javax.swing.JButton DescendenciaPersonaBtn1;
+    private javax.swing.JButton MostrarAntepasados;
     private javax.swing.JTextField NombrePersonaTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

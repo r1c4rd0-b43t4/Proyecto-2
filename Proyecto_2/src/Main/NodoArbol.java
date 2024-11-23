@@ -1,22 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Main;
 
 /**
- *
- * @author reneb
+ *Clase Nodo para Arbol.
+ * 
  */
 public class NodoArbol {
-
     private Persona persona;
     NodoArbol padre;
     NodoArbol[] hijos;
     int numeroHijos;
 
     /**
-     * Constructor NodoArbol
+     * Constructor NodoArbol.
      * @param persona 
      */
     public NodoArbol(Persona persona) {
@@ -25,7 +20,7 @@ public class NodoArbol {
         this.numeroHijos = 0;
     }
     /**
-     * Metodo para agregar hijos
+     * Metodo para agregar hijos.
      * @param hijo 
      */
     public void agregarHijo(NodoArbol hijo) {
@@ -38,7 +33,7 @@ public class NodoArbol {
     }
     
     /**
-     * Metodo para obtener el padre del NodoArbol
+     * Metodo para obtener el padre del NodoArbol.
      * @return 
      */
     public NodoArbol obtenerPadre() {
@@ -46,7 +41,7 @@ public class NodoArbol {
     }
     
     /**
-     * Metodo para obtener el array de los hijos del NodoArbol
+     * Metodo para obtener el array de los hijos del NodoArbol.
      * @return 
      */
     public NodoArbol[] obtenerHijos() {
@@ -56,7 +51,7 @@ public class NodoArbol {
     }
     
     /**
-     * Getter de persona
+     * Getter de persona.
      * @return 
      */
     public Persona getPersona() {
@@ -64,6 +59,7 @@ public class NodoArbol {
     }
 
     /**
+     * Instancia persona en el nodo.
      * @param persona the persona to set
      */
     public void setPersona(Persona persona) {

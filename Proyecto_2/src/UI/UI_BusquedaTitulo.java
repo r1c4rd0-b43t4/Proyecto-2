@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package UI;
+
 import Main.ListaSimple;
 import Main.HashTable;
 import Main.Nodo;
@@ -12,8 +9,8 @@ import Main.Persona;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author HP
+ * Clase UI_BusquedaTitulo JForm.
+ * 
  */
 public class UI_BusquedaTitulo extends javax.swing.JFrame {
     static HashTable hashTableT;
@@ -37,104 +34,17 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         
     }
     
-    public void ArbolDescendencia(Persona padre, String nombrePersona, String numeral, boolean isPadre){
-        try{
-            //System.out.println("DESCENDENCIA");
-            Persona auxPersona;
-            Nodo auxNodo;
-            String nombreHijo;
-            Persona hijo;
-            String auxPadre;
-            Nodo nodoPadre;
-            boolean encontrado;
-            if (!nombrePersona.equals("") ){
-                int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(nombrePersona));
-                auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(nombrePersona, numeral, false);
-                
-                if (auxPersona != null){
-                    if(!isPadre){
-                        encontrado = false;
-                        nodoPadre = auxPersona.getPadres().getpFirst();
-                        
-                        while (nodoPadre!=null && !encontrado){
-                            auxPadre = (String) nodoPadre.getValor();
-                            if(auxPadre.contains(padre.getNombre()) || (auxPadre.contains(padre.getMote()) && !padre.getMote().equals(""))){
-                                encontrado = true;
-                            }
-                            nodoPadre = nodoPadre.getSiguiente();
-                        }
-                        
-                        if(!encontrado)
-                            return;
-                    }
-                    
-                    if (isPadre)
-                        subArbol = new Arbol(auxPersona);
-                    else{
-                        subArbol.agregarNodo(padre, auxPersona); 
-                        this.lista_personas.insertarAlFinal(auxPersona);
-                        System.out.println(auxPersona.getNombre());
-                    }
-
-                    if(auxPersona.getHijos()!=null){
-                        auxNodo = auxPersona.getHijos().getpFirst();
-                        while(auxNodo != null){
-                            if(!auxNodo.getValor().toString().contains(auxPersona.getApellido()))
-                                nombreHijo = auxNodo.getValor().toString() + auxPersona.getApellido();
-                            else
-                                nombreHijo = auxNodo.getValor().toString();
-                                
-                            int a = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(nombreHijo));
-                            
-                            if(isPadre){
-                                hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividualNumeral(nombreHijo, auxPersona.getNumeral(), true);
-                            }
-                            else{
-                                /*if(nombreHijo.equals(padre.getNombre()))
-                                    hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividualNumeral(nombreHijo, auxPersona.getNumeral(), true);
-                                else
-                                    hijo = this.hashTableT.getArregloHash()[a].BuscarNombreIndividual(nombreHijo);*/
-                                hijo = this.hashTableT.getArregloHash()[a].BuscarHijoXNombre(nombreHijo, auxPersona);
-                            }
-                                
-                                
-                            if(hijo == null){
-                                hijo = new Persona();
-                                hijo.setNombre(nombreHijo); 
-                            }
-
-                            if(hijo.getNombre()!=null)
-                                this.ArbolDescendencia(auxPersona, hijo.getNombre(), hijo.getNumeral(), false);
-
-                            //System.out.println(hijo.getNombre());
-                            auxNodo = auxNodo.getSiguiente();
-                        }
-                    }
-                }
-                else{
-                    auxPersona = new Persona();
-                    auxPersona.setNombre(nombrePersona); 
-                    subArbol.agregarNodo(padre, auxPersona);
-                    this.lista_personas.insertarAlFinal(auxPersona);
-                    System.out.println(auxPersona.getNombre());
-                }
-            }
-        }
-        catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
     
+    /**
+     * Método que busqueda tiene que devolver una persona que luego sera utilizada para buscar sus descendientes en el Arbol.
+     * 
+     */
     public void BusquedaPersona(){
         Persona auxPersona;
         ListaSimple personas;
         Nodo auxNodo;
-        //Nodo auxNodo;
-        // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
-        // sus descendientes en la clase arbol
+
         if (!this.TituloPersonaTxt.getText().equals("")){
-            
-            //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
             int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(this.TituloPersonaTxt.getText()));
             personas = this.hashTableT.getArregloHash()[i].BuscarTituloLista(this.TituloPersonaTxt.getText());
             
@@ -142,8 +52,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "No hay una persona con este titulo" );
                 return;
             }
-            auxNodo = personas.getpFirst();
-            //Hay que validar cuando no se encuentra una persona    
+            auxNodo = personas.getpFirst();  
             while(auxNodo!=null){
                 auxPersona = (Persona)auxNodo.getValor();
                 if (auxPersona != null)
@@ -172,7 +81,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         ComboBox = new javax.swing.JComboBox<>();
         TituloPersonaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        DescendenciaPersonaBtn = new javax.swing.JButton();
+        MostrarDatos = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -215,17 +124,17 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         jLabel2.setText("Ingrese el titulo de la persona a buscar:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, -1, -1));
 
-        DescendenciaPersonaBtn.setBackground(new java.awt.Color(204, 204, 204));
-        DescendenciaPersonaBtn.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
-        DescendenciaPersonaBtn.setForeground(new java.awt.Color(0, 0, 0));
-        DescendenciaPersonaBtn.setText("Mostrar Datos");
-        DescendenciaPersonaBtn.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        DescendenciaPersonaBtn.addActionListener(new java.awt.event.ActionListener() {
+        MostrarDatos.setBackground(new java.awt.Color(204, 204, 204));
+        MostrarDatos.setFont(new java.awt.Font("SansSerif", 2, 18)); // NOI18N
+        MostrarDatos.setForeground(new java.awt.Color(0, 0, 0));
+        MostrarDatos.setText("Mostrar Datos");
+        MostrarDatos.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        MostrarDatos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DescendenciaPersonaBtnActionPerformed(evt);
+                MostrarDatosActionPerformed(evt);
             }
         });
-        getContentPane().add(DescendenciaPersonaBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 140, 40));
+        getContentPane().add(MostrarDatos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 140, 40));
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 2, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,6 +148,10 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón Busqueda.
+     * @param evt 
+     */
     private void BusquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBtnActionPerformed
         this.ComboBox.removeAllItems();
         this.BusquedaPersona();
@@ -247,7 +160,11 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BusquedaBtnActionPerformed
 
-    private void DescendenciaPersonaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DescendenciaPersonaBtnActionPerformed
+    /**
+     * Botón para mostrar datos.
+     * @param evt 
+     */
+    private void MostrarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarDatosActionPerformed
         try{
             String nom1 = this.ComboBox.getSelectedItem().toString();
             String[] auxPersona = nom1.split("-"); 
@@ -290,19 +207,11 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontró información asociada al nodo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            /*String nom1 = this.ComboBox.getSelectedItem().toString();
-            String[] persona = nom1.split("-"); 
-            String nombrePersona = persona[0].trim();
-            //Arbol subArbol = new Arbol();
-            System.out.println("INICIO");
-            this.ArbolDescendencia(null, nombrePersona, persona[1].substring(1), true);
-            System.out.println("FINAL");
-            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);*/
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
         }
-    }//GEN-LAST:event_DescendenciaPersonaBtnActionPerformed
+    }//GEN-LAST:event_MostrarDatosActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         this.setVisible(false);
@@ -312,6 +221,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasActionPerformed
 
     /**
+     * Main UI.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -357,7 +267,7 @@ public class UI_BusquedaTitulo extends javax.swing.JFrame {
     private javax.swing.JButton Atras;
     private javax.swing.JButton BusquedaBtn;
     private javax.swing.JComboBox<String> ComboBox;
-    private javax.swing.JButton DescendenciaPersonaBtn;
+    private javax.swing.JButton MostrarDatos;
     private javax.swing.JTextField TituloPersonaTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

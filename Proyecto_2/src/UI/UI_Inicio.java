@@ -1,18 +1,12 @@
-
-
 package UI;
+
 import Carga.Reader;
-import Main.ListaSimple;
-import Main.Arbol;
-import Main.NodoArbol;
-import Main.HashTable;
-import Main.Nodo;
-import Main.Persona;
+import Main.*;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author rdbae
+ * Clase UI_Inicio JForm.
+ * 
  */
 public class UI_Inicio extends javax.swing.JFrame {
     static ListaSimple personas;
@@ -75,6 +69,10 @@ public class UI_Inicio extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para empezar a cargar el JSON y verificarlo.
+     * @param evt 
+     */
     private void CargarJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarJSONActionPerformed
         
     try{
@@ -101,6 +99,7 @@ public class UI_Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_CargarJSONActionPerformed
     
     /**
+     * Main UI.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

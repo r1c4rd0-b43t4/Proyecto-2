@@ -1,4 +1,3 @@
-
 package UI;
 
 import Carga.Reader;
@@ -6,8 +5,8 @@ import Main.ListaSimple;
 import javax.swing.JOptionPane;
 import Main.*;
  /**
- *
- * @author rdbae
+ * Clase UI_Menu_Principal JForm.
+ * 
  */
 public class UI_Menu_Principal extends javax.swing.JFrame {
     static HashTable hashTablePrincipal;
@@ -121,6 +120,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Botón para iniciar la búsqueda por nombre.
+     * @param evt 
+     */
     private void BuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarNombreActionPerformed
         this.setVisible(false);
         UI_BusquedaNombre pantalla = new UI_BusquedaNombre(hashTablePrincipal, arbolPrincipal, personas);
@@ -128,6 +131,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         pantalla.setVisible(true);
     }//GEN-LAST:event_BuscarNombreActionPerformed
 
+    /**
+     * Botón para iniciar la búsqueda de las generaciones del Arbol.
+     * @param evt 
+     */
     private void ListaGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListaGeneracionActionPerformed
         this.setVisible(false);
         UI_BusquedaGeneracion pantalla = new UI_BusquedaGeneracion(hashTablePrincipal, arbolPrincipal, personas);
@@ -135,6 +142,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         pantalla.setVisible(true);
     }//GEN-LAST:event_ListaGeneracionActionPerformed
 
+    /**
+     * Botón para iniciar la carga de un nuevo JSON y filtrarlo.
+     * @param evt 
+     */
     private void nuevoJSONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoJSONActionPerformed
           try{
           ListaSimple lista = new ListaSimple();
@@ -160,6 +171,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nuevoJSONActionPerformed
 
+    /**
+     * Botón para iniciar la visualización del Arbol en pantalla.
+     * @param evt 
+     */
     private void VerRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerRegistroActionPerformed
         Arbol arbol = new Arbol();
         arbol.construirArbol(personas);
@@ -169,6 +184,10 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_VerRegistroActionPerformed
 
+    /**
+     * Botón para iniciar la búsqueda por título nobilario.
+     * @param evt 
+     */
     private void BuscarTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarTituloActionPerformed
         this.setVisible(false);
         UI_BusquedaTitulo pantalla = new UI_BusquedaTitulo(hashTablePrincipal, arbolPrincipal, personas);
@@ -177,6 +196,7 @@ public class UI_Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarTituloActionPerformed
 
     /**
+     * Main UI.
      * @param args the command line arguments
      */
     public static void main(String args[]) {

@@ -11,10 +11,15 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Clase Reader para leer los JSON.
+ * 
+ */
 public class Reader {
 
     /**
-     * Método que guía al usuario a la selección de los archivos .JSON que serán usados para el funcionamiento del programa, verificando que se cumpla todo lo necesario para crear el árbol con la Casa seleccionada.
+     * Método que guía al usuario para la lectura de un JSON compatible que cumpla con los parámetros del proyecto, devolviendo una ListaSimple de Personas las cuales forman parte de la Casa a ser analizada.
+     * @return 
      */
     public ListaSimple Read() {
         StringBuilder texto = new StringBuilder();
@@ -136,7 +141,12 @@ public class Reader {
         }
         return null;
     }
-
+    
+    /**
+     * Método que verifíca si un JSON es válido para el proyecto, supervisando las keys necesarias. Devuelve true si es compatible.
+     * @param jsonString
+     * @return 
+     */
     private boolean JSONvalido(String jsonString) {
         String[] requiredKeys = {"Of his name", "Born to", "Known throughout as", "Held title", "Of eyes", "Of hair", "Father to"};
         for (String key : requiredKeys) {

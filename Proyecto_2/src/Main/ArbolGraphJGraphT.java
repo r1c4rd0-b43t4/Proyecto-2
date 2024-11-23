@@ -1,18 +1,27 @@
 package Main;
+
 import com.mxgraph.layout.hierarchical.mxHierarchicalLayout;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.view.mxGraph;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 import org.jgrapht.graph.SimpleGraph;
-
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Clase ArbolGraphJGraphT que transforma el Arbol en un SimpleGraph de JGraphT y así poder mostrarselo al usuario, además de ser interactivo. 
+ * 
+ */
 public class ArbolGraphJGraphT {
     private Graph<String, DefaultEdge> graph;
     private HashTable personasHash;
 
+    /**
+     * Constructor del ArbolGraphJGraphT.
+     * @param arbol
+     * @param listaPersonas 
+     */
     public ArbolGraphJGraphT(Arbol arbol, ListaSimple<Persona> listaPersonas) {
         this.graph = new SimpleGraph<>(DefaultEdge.class);
         this.personasHash = new HashTable();
@@ -21,6 +30,10 @@ public class ArbolGraphJGraphT {
         mostrar();
     }
 
+    /**
+     * Método que construye el grafo tipo JGraphT obteniendo los nodos del Arbol que fue cargado en el sistema. Cabe destacar que se muestra el Arbol devidamente, pero se toma como un grafo para el funcionamiento de la librería, de todos modos, sigue siendo un Arbol.
+     * @param nodo 
+     */
     private void construirGrafo(NodoArbol nodo) {
         if (nodo != null) {
             agregarNodo(nodo);
@@ -41,6 +54,10 @@ public class ArbolGraphJGraphT {
         }
     }
 
+    /**
+     * Método que agrega un nodo al grafo JGraphT.
+     * @param nodo 
+     */
     private void agregarNodo(NodoArbol nodo) {
         String nodeId = nodo.getPersona().getNombre() + "-" + nodo.getPersona().getNumeral();
         if (!graph.containsVertex(nodeId)) {
@@ -48,6 +65,11 @@ public class ArbolGraphJGraphT {
         }
     }
 
+    
+    /**
+     * Método que muestra el Arbol al usuario en pantalla donde se estiliza y ordena los nodos, para una mayor comodidad visual. Tambien se establece la interacción del grado para mostrar la información respectiva al nodo.
+     * 
+     */
     private void mostrar() {
         mxGraph mxGraph = new mxGraph();
         Object parent = mxGraph.getDefaultParent();
@@ -112,6 +134,10 @@ public class ArbolGraphJGraphT {
         });
     }
 
+    /**
+     * Método para que al oprimir el nodo, por medio del id buscarlo en la lista de personas y mostrar la información respectiva.
+     * @param id 
+     */
     private void mostrarInformacionNodo(String id) {
         String[] parts = id.split("-");
         if (parts.length == 2) {

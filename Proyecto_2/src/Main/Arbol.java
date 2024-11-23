@@ -1,27 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Main;
 
 import javax.swing.JOptionPane;
 
 /**
+ * Clase Arbol con sus métodos.
  *
- * @author reneb
  */
 public class Arbol {
     private NodoArbol raiz;
     
     /**
-     * Constructor
+     * Constructor del Arbol.
      * @param personaRaiz 
      */
     public Arbol(Persona personaRaiz) {
         this.raiz = new NodoArbol(personaRaiz);
     }
     /**
-     * Metodo que construye el arbol genealogico, crea una listaNodos con las Personas del arbol, luego establece las relaciones entre ellos, para luego identificar la raiz
+     * Metodo que construye el árbol genealógico, crea una listaNodos con las Personas del Arbol, luego establece las relaciones entre ellos, para luego identificar la raiz.
      * @param listaPersonas 
      */
     public void construirArbol(ListaSimple<Persona> listaPersonas) {
@@ -44,7 +40,7 @@ public class Arbol {
     }   
 
     /**
-     * Metodo para procesar los elementos del Json, crear el nodo que los contiene asignar sus relaciones y si ya existe.
+     * Método para procesar los elementos del JSON, crear el nodo que los contiene, asignar sus relaciones y si ya existe.
      * @param nodoPadre
      * @param listaPersonas 
      */
@@ -69,7 +65,7 @@ public class Arbol {
     }
     
     /**
-     * Muestra las personas que hay en el arbol
+     * Muestra las personas que hay en el Arbol.
      * @return 
      */    
     public int contarPersonas() {
@@ -77,7 +73,7 @@ public class Arbol {
     }
     
     /**
-     * recorre el arbol con un contador para devolver el numero de nodos que hay en este.
+     * Recorre el Arbol con un contador para devolver el número de nodos que hay en este.
      * @param nodo
      * @return 
      */
@@ -93,7 +89,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para ver si un nodo es hijo del otro
+     * Método para ver si un nodo es hijo del otro.
      * @param hijo
      * @param padre
      * @return 
@@ -120,7 +116,7 @@ public class Arbol {
     }
 
     /**
-     * revisa si una persona existe en el arbol
+     * Revisa si una persona existe en el Arbol.
      * @param persona
      * @return 
      */
@@ -129,7 +125,7 @@ public class Arbol {
     }
 
     /**
-     * Busca la raíz en el Json buscando el que tenga como padre unknown
+     * Busca la raíz en el Json, verificando el que tenga como padre unknown.
      * @param listaPersonas
      * @return 
      */
@@ -147,7 +143,7 @@ public class Arbol {
     }
     
     /**
-    * Verifica si hay duplicados en la lista de personas del árbol.
+    * Verifica si hay duplicados en la lista de personas del Arbol.
     * @param listaPersonas La lista de personas a verificar.
     * @throws IllegalStateException si se encuentra una persona duplicada (mismo nombre y numeral).
     */
@@ -179,7 +175,7 @@ public class Arbol {
     }
     
     /**
-     * pone la raiz
+     * Pone la raiz.
      * @param raiz 
      */
     public void setRaiz(NodoArbol raiz) {
@@ -187,7 +183,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para buscar solo por persona
+     * Método para buscar solo por persona.
      * @param persona
      * @return 
      */
@@ -196,7 +192,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo que recorre todo el arbol para encontrar un nodo
+     * Método que recorre todo el Arbol para encontrar un nodo.
      * @param nodo
      * @param persona
      * @return 
@@ -220,7 +216,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para agregar un Nodo hijo (el que se crea) asignandole un padre (existente)
+     * Método para agregar un Nodo hijo (el que se crea) asignándole un padre (existente).
      * @param personaPadre
      * @param personaHijo 
      */
@@ -235,7 +231,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para Obtener el padre de un nodo
+     * Método para Obtener el padre de un nodo.
      * @param persona
      * @return 
      */
@@ -250,7 +246,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo para obtener el array de hijos de un nodo
+     * Método para obtener el array de hijos de un nodo.
      * @param persona
      * @return 
      */
@@ -265,7 +261,7 @@ public class Arbol {
     }
     
     /**
-     * Metodo que devuelve el array de los antepasados del nodo buscado
+     * Método que devuelve el array de los antepasados del nodo buscado.
      * @param persona
      * @return 
      */
@@ -292,7 +288,7 @@ public class Arbol {
     }
     
     /**
-     * Devuelve un array con todos los integrantes de una generacion (Misma profundidad)
+     * Devuelve un array con todos los integrantes de una generación (Misma profundidad).
      * @param persona
      * @return 
      */
@@ -311,7 +307,7 @@ public class Arbol {
     }
     
     /**
-     * Obtiene el nivel del Nodo buscado
+     * Obtiene el nivel del Nodo buscado.
      * @param nodo
      * @param nivelActual
      * @return 
@@ -327,7 +323,7 @@ public class Arbol {
     }
     
     /**
-     * agrega a la lista ingresada todos los nodos pertenecientes al mismo nivel objetivo
+     * Agrega a la lista ingresada todos los nodos pertenecientes al mismo nivel objetivo.
      * @param nodo
      * @param nivelObjetivo
      * @param nivelActual
@@ -346,12 +342,25 @@ public class Arbol {
             }
         }
     }
+    
+    /**
+     * Método que obtiene los nodos de un Arbol por título nobilario.
+     * @param titulo
+     * @return 
+     */
     public String[] obtenerPorTituloNobiliario(String titulo) {
         ListaSimple resultado = new ListaSimple();
         buscarPorTituloNobiliario(getRaiz(), titulo, resultado);
         return resultado.aArray();
     }
 
+    
+    /**
+     * Método que busca un nodo en específico usando un título nobilario.
+     * @param nodo
+     * @param titulo
+     * @param resultado 
+     */
     private void buscarPorTituloNobiliario(NodoArbol nodo, String titulo, ListaSimple resultado) {
         if (nodo == null) {
             return;
@@ -365,7 +374,7 @@ public class Arbol {
     }
     
     /**
-     * Crea un subarbol manteniendo la misma estructura del arbol original pero con la persona que se le pasa como nodo raiz
+     * Crea un subarbol manteniendo la misma estructura del Arbol original pero con la persona que se le pasa como nodo raiz.
      * @param persona
      * @return 
      */
@@ -382,7 +391,7 @@ public class Arbol {
     }
    
     /**
-     * metodo recursivo para mantener la jerarquia del arbol original en el subarbol, se pasan un nodooriginal y un nodocopia para así recorrer el arbol original, mientras se crean nodosarbol que se añaden al subarbol
+     * Método recursivo para mantener la jerarquía del arbol original en el subarbol, se pasan un nodo original y un nodo copia para así recorrer el Arbol original, mientras se crean nodos arbol que se añaden al subarbol.
      * @param nodoOriginal
      * @param nodoCopia 
      */
@@ -395,6 +404,7 @@ public class Arbol {
     }
 
     /**
+     * Devuelve la raiz del Arbol.
      * @return the raiz
      */
     public NodoArbol getRaiz() {

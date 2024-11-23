@@ -1,16 +1,20 @@
-
 package Main;
+
 import Main.Persona;
 /**
- *
- * @author 
+ *Clase ListaSimple.
+ *  
  */
 public class ListaSimple<T> {
     private Nodo <T> pFirst;
     private Nodo <T> pLast;
     private int size;
     private ListaSimple personas_encontradas;
-
+    
+    /**
+     * Constructor ListaSimple.
+     * 
+     */
     public ListaSimple() {
         this.pFirst = null;
         this.pLast = null;
@@ -18,26 +22,51 @@ public class ListaSimple<T> {
         this.personas_encontradas = null;
     }
 
+    /**
+     * Método que verifica si una ListaSimple es vacia.
+     * @return 
+     */
     public boolean EsVacio(){
         return (pFirst == null);   
     }
 
+    /**
+     * Devuelve el primer nodo.
+     * @return 
+     */
     public Nodo <T> getpFirst() {
         return pFirst;
     }
 
+    /**
+     * Devuelve el último nodo.
+     * @return 
+     */
     public Nodo <T> getpLast() {
         return pLast;
     }
 
+    /**
+     * Devuelve el tamaño de la ListaSimple.
+     * @return 
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Devuelve la lista de Personas encontradas.
+     * @return 
+     */
     public ListaSimple <T> getPersonas_encontradas() {
         return personas_encontradas;
     }
     
+    /**
+     * Devuelve el valor de un nodo.
+     * @param value
+     * @return 
+     */
     public Nodo <T> getValue( T value){
         Nodo aux = this.pFirst;
         while (aux != null){
@@ -50,7 +79,10 @@ public class ListaSimple<T> {
     }
    
     
-    
+    /**
+     * Método que inserta al final un nodo en la ListaSimple.
+     * @param value 
+     */
     public void insertarAlFinal(T value){
         
         Nodo newNodo = new Nodo();
@@ -67,6 +99,10 @@ public class ListaSimple<T> {
         this.size += 1;
     }
     
+    /**
+     * Método que inserta al principio un nodo en la ListaSimple.
+     * @param value 
+     */
     public  void insertarAlPrincipio(T value){
         Nodo newNodo = new Nodo();
         newNodo.setValor(value);
@@ -78,6 +114,10 @@ public class ListaSimple<T> {
         this.size += 1;
     }
     
+    /**
+     * Método para eliminar un nodo.
+     * @param value 
+     */
     public void eliminar (T value){
         Nodo ant = null;
         Nodo aux = this.pFirst;
@@ -97,6 +137,10 @@ public class ListaSimple<T> {
         }  
     }
     
+    /**
+     * Método que muestra los elementos de la ListaSimple.
+     * 
+     */
     public void showList(){
         Nodo aux = this.pFirst;
         while (aux != null){
@@ -104,8 +148,14 @@ public class ListaSimple<T> {
             aux = aux.getSiguiente();
         }
     } 
-    
-    // Se usa si necesitas saber que numeral tiene la persona elegida
+
+    /**
+     * Método que se usa si necesitas saber que numeral tiene la persona elegida.
+     * @param value
+     * @param numeral
+     * @param excluirNumeral
+     * @return 
+     */
     public Persona BuscarNombreIndividualNumeral (String value, String numeral, boolean excluirNumeral){
         //try{
         //this.personas_encontradas = new ListaSimple();
@@ -129,8 +179,13 @@ public class ListaSimple<T> {
         return res;
         
     }
-    
-    // Se usa si necesitas saber que numeral tiene la persona elegida
+
+    /**
+     * Método que se usa si necesitas saber que numeral tiene la persona elegida.
+     * @param value
+     * @param padre
+     * @return 
+     */
     public Persona BuscarHijoXNombre (String value, Persona padre){
         //try{
         //this.personas_encontradas = new ListaSimple();
@@ -167,8 +222,12 @@ public class ListaSimple<T> {
 
     }
     
-    
-    // Se usa si no necesitas especificar cual numeral tiene
+
+    /**
+     * Método que se usa si no necesitas especificar cual numeral tiene.
+     * @param value
+     * @return 
+     */
     public Persona BuscarNombreIndividual (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
@@ -187,6 +246,11 @@ public class ListaSimple<T> {
         
     }
     
+    /**
+     * Método que recibe el nombre de un objeto Persona y lo busca en la ListaSimple.
+     * @param value
+     * @return 
+     */
     public ListaSimple BuscarNombreLista (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
@@ -206,19 +270,20 @@ public class ListaSimple<T> {
             return lista_personas;
         else
             return null;
-        //}
-        
+       
     }
     
+    /**
+     * Método que busca el mote en la lista simple y devuelve la persona.
+     * @param value
+     * @return 
+     */
     public Persona BuscarMoteIndividual (String value){
-        //try{
-        //this.personas_encontradas = new ListaSimple();
         Persona auxPersona;
         Nodo aux = this.pFirst;
         while (aux != null){
             Persona res = (Persona) aux.getValor();
             if (res.getMote().equals(value)){
-                //this.personas_encontradas.insertarAlFinal(aux.getValor());
                 auxPersona = (Persona)aux.getValor();
                 return auxPersona;
             }   
@@ -228,6 +293,11 @@ public class ListaSimple<T> {
         
     }
     
+    /**
+     * Método que busca el título en la lista simple y devuelve la persona.
+     * @param value
+     * @return 
+     */
     public ListaSimple BuscarTituloLista (String value){
         //try{
         //this.personas_encontradas = new ListaSimple();
@@ -251,6 +321,10 @@ public class ListaSimple<T> {
         
     }
     
+    /**
+     * Método que ve el tamaño de la lista y devuelve un array con los elementos de la lista.
+     * @return 
+     */
     public String[] aArray() {
         int tamanio = 0;
         Nodo actual = pFirst;
@@ -270,6 +344,11 @@ public class ListaSimple<T> {
         return resultado;
     }
     
+    /**
+     * Método que devuelve true si el nodo existe en la lista.
+     * @param value
+     * @return 
+     */
     public boolean contiene(T value) {
         Nodo<T> aux = this.pFirst;
         while (aux != null) {
@@ -281,6 +360,10 @@ public class ListaSimple<T> {
         return false; 
     }
     
+    /**
+     * Método que vacia la lista.
+     * 
+     */
     public void limpiarLista(){
         Nodo aux = this.pFirst;
         while(aux!=null){
@@ -291,9 +374,13 @@ public class ListaSimple<T> {
         this.pFirst = null;
     }
     
+    /**
+     * Método que busca el padre de la persona por el nombre en la lista.
+     * @param value
+     * @param hijo
+     * @return 
+     */
     public Persona BuscarPadreXNombre (String value, Persona hijo){
-        //try{
-        //this.personas_encontradas = new ListaSimple();
         Persona res;
         Nodo aux = this.pFirst;
         Nodo nodoHijo;

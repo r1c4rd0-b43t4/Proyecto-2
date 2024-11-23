@@ -1,7 +1,9 @@
-
 package Main;
 
-
+/**
+ * Clase Persona que guarda los datos de las personas que pertenecen a la Casa cargada.
+ * @author rdbae
+ */
 public class Persona {
     private String nombre;
     private String apellido;
@@ -17,9 +19,28 @@ public class Persona {
     private String destino;
     private int indiceHash;
 
+    /**
+     * Constructor persona vacia.
+     * 
+     */
     public Persona() {
     }
-
+    
+    /**
+     * Constructor de la clase Persona.
+     * @param nombre
+     * @param apellido
+     * @param numeral
+     * @param padres
+     * @param mote
+     * @param titulo
+     * @param conyuge
+     * @param color_ojos
+     * @param color_pelo
+     * @param hijos
+     * @param notas
+     * @param destino 
+     */
     public Persona(String nombre, String apellido, String numeral, ListaSimple padres, String mote, String titulo, String conyuge, String color_ojos, String color_pelo, ListaSimple hijos, String notas, String destino) {
         this.nombre = nombre;
         this.apellido = apellido;
@@ -37,6 +58,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el nombre
      * @return the nombre
      */
     public String getNombre() {
@@ -44,6 +66,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el nombre.
      * @param nombre the nombre to set
      */
     public void setNombre(String nombre) {
@@ -51,6 +74,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el numeral.
      * @return the numeral
      */
     public String getNumeral() {
@@ -58,6 +82,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el numeral.
      * @param numeral the numeral to set
      */
     public void setNumeral(String numeral) {
@@ -65,6 +90,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve la lista simple de padres.
      * @return the padres
      */
     public ListaSimple getPadres() {
@@ -72,6 +98,7 @@ public class Persona {
     }
 
     /**
+     * Instancia los padres.
      * @param padres the padres to set
      */
     public void setPadres(ListaSimple padres) {
@@ -79,6 +106,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el mote.
      * @return the mote
      */
     public String getMote() {
@@ -86,6 +114,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el mote.
      * @param mote the mote to set
      */
     public void setMote(String mote) {
@@ -93,6 +122,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el título nobilario.
      * @return the titulo
      */
     public String getTitulo() {
@@ -100,6 +130,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el título nobilario.
      * @param titulo the titulo to set
      */
     public void setTitulo(String titulo) {
@@ -107,6 +138,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el conyuge.
      * @return the conyuge
      */
     public String getConyuge() {
@@ -114,6 +146,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el conyuge.
      * @param conyuge the conyuge to set
      */
     public void setConyuge(String conyuge) {
@@ -121,6 +154,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el color de los ojos.
      * @return the color_ojos
      */
     public String getColor_ojos() {
@@ -128,6 +162,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el color de los ojos.
      * @param color_ojos the color_ojos to set
      */
     public void setColor_ojos(String color_ojos) {
@@ -135,6 +170,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el color del pelo.
      * @return the color_pelo
      */
     public String getColor_pelo() {
@@ -142,6 +178,7 @@ public class Persona {
     }
 
     /**
+     * Instancia el color del pelo.
      * @param color_pelo the color_pelo to set
      */
     public void setColor_pelo(String color_pelo) {
@@ -149,6 +186,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve la lista simple de hijos.
      * @return the hijos
      */
     public ListaSimple getHijos() {
@@ -156,6 +194,7 @@ public class Persona {
     }
 
     /**
+     * Instancia la lista simple de hijos.
      * @param hijos the hijos to set
      */
     public void setHijos(ListaSimple hijos) {
@@ -163,6 +202,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve las notas.
      * @return the notas
      */
     public String getNotas() {
@@ -170,6 +210,7 @@ public class Persona {
     }
 
     /**
+     * Instancia las notas.
      * @param notas the notas to set
      */
     public void setNotas(String notas) {
@@ -177,6 +218,7 @@ public class Persona {
     }
 
     /**
+     * Devuelve el destino.
      * @return the destino
      */
     public String getDestino() {
@@ -184,33 +226,32 @@ public class Persona {
     }
 
     /**
+     * Instancia el destino.
      * @param destino the destino to set
      */
     public void setDestino(String destino) {
         this.destino = destino;
     }
     
-         
     /**
-     * get indiceHash 
+     * Devuelve el índice que tiene en el hash table.
+     * @return 
      */
     public int getIndiceHash() {
         return indiceHash;
     }
     
     /**
+     * Instancia el indice que tiene en el hash table.
      * @param indiceHash the indiceHash to set 
      */
     public void setIndiceHash(int indiceHash) {
         this.indiceHash = indiceHash;
     }
 
-    @Override
-    public String toString() {
-        return "Persona{" + "nombre=" + nombre + ", numeral=" + numeral + ", padres=" + padres + ", mote=" + mote + ", titulo=" + titulo + ", conyuge=" + conyuge + ", color_ojos=" + color_ojos + ", color_pelo=" + color_pelo + ", hijos=" + hijos + ", notas=" + notas + ", destino=" + destino + '}';
-    }
 
     /**
+     * Devuelve el apellido.
      * @return the apellido
      */
     public String getApellido() {
