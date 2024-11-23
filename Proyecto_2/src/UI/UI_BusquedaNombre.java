@@ -132,12 +132,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
         Persona auxPersona;
         ListaSimple lista_personas;
         Nodo auxNodo;
-        //Nodo auxNodo;
-        // Esta busqueda tiene que devolver una persona que luego sera utilizada para buscar 
-        // sus descendientes en la clase arbol
         if (!this.NombrePersonaTxt.getText().equals("")){
-            
-            //this.hashTableT.getArregloHash()[i].limpiarResumenes_encontrados();
             int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(this.NombrePersonaTxt.getText()));
             lista_personas = this.hashTableT.getArregloHash()[i].BuscarNombreLista(this.NombrePersonaTxt.getText());
             if (lista_personas == null){
@@ -166,7 +161,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
      */
     public void ArbolAscendencia(String datoPersona, String numeral, Persona hijo){
         try{
-            //System.out.println("DESCENDENCIA");
             Persona auxPersona;
             String auxPadre;
             Nodo nodoPadre;
@@ -313,9 +307,6 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
     private void BusquedaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusquedaBtnActionPerformed
         this.ComboBox.removeAllItems();
         this.BusquedaPersona();
-        //this.lista_resumenes.clear();
-        //this.limpiarPantalla();
-        
     }//GEN-LAST:event_BusquedaBtnActionPerformed
 
     /**
