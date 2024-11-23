@@ -255,7 +255,7 @@ public class ListaSimple<T> {
         //try{
         //this.personas_encontradas = new ListaSimple();
         ListaSimple lista_personas = new ListaSimple();
-        Persona auxPersona = new Persona();
+        Persona auxPersona;
         Nodo aux = this.pFirst;
         while (aux != null){
             Persona res = (Persona) aux.getValor();

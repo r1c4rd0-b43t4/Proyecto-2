@@ -157,6 +157,59 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe ingresar alguna persona, intente nuevamente" );
         }
     }
+    
+    /**
+     * Metodo que llena un subArbol con la ascendencia de la persona elegida y la muestra
+     * @param datoPersona
+     * @param numeral
+     * @param hijo 
+     */
+    public void ArbolAscendencia(String datoPersona, String numeral, Persona hijo){
+        try{
+            //System.out.println("DESCENDENCIA");
+            Persona auxPersona;
+            String auxPadre;
+            Nodo nodoPadre;
+            int postCom;
+            if (!datoPersona.equals("") ){
+                int i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(datoPersona));
+                if(!numeral.equals(""))
+                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarNombreIndividualNumeral(datoPersona, numeral, false);
+                else{
+                    postCom = datoPersona.indexOf(",");
+                    if(postCom!= -1){
+                        datoPersona = datoPersona.substring(0, postCom);
+                        i = this.hashTableT.getIndice(this.hashTableT.returnAsciiCode(datoPersona));
+                    }
+                    auxPersona = this.hashTableT.getArregloHash()[i].BuscarPadreXNombre(datoPersona, hijo);
+                }
+                if(auxPersona == null){
+                    auxPersona = this.hashTableT.BuscarMote(datoPersona);
+                }
+                
+                if (auxPersona != null){
+                    if (hijo==null){
+                        subArbol = new Arbol(auxPersona);
+                        
+                    }
+                    else{
+                        this.subArbol.agregarNodo(hijo, auxPersona );
+                        
+                    }
+                    
+                    nodoPadre = auxPersona.getPadres().getpFirst();    
+                    while (nodoPadre!=null){
+                        auxPadre = (String) nodoPadre.getValor();
+                        this.ArbolAscendencia(auxPadre, "", auxPersona);
+                        nodoPadre = nodoPadre.getSiguiente();
+                    }
+                }
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() );
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -274,10 +327,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             String nom1 = this.ComboBox.getSelectedItem().toString();
             String[] persona = nom1.split("-"); 
             String nombrePersona = persona[0].trim();
-            //Arbol subArbol = new Arbol();
-            System.out.println("INICIO");
             this.ArbolDescendencia(null, nombrePersona, persona[1].substring(1), true);
-            System.out.println("FINAL");
             ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
         }
         catch(Exception e){
@@ -301,7 +351,19 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
      * @param evt 
      */
     private void MostrarAntepasadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarAntepasadosActionPerformed
-        // TODO add your handling code here:
+        try{
+            String nom1 = this.ComboBox.getSelectedItem().toString();
+            String[] persona = nom1.split("-"); 
+            String nombrePersona = persona[0].trim();
+            //Arbol subArbol = new Arbol();
+            System.out.println("INICIO");
+            this.ArbolAscendencia(nombrePersona , persona[1].substring(1), null);
+            System.out.println("FINAL");
+            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
+        }
     }//GEN-LAST:event_MostrarAntepasadosActionPerformed
 
     /**
