@@ -319,7 +319,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             String[] persona = nom1.split("-"); 
             String nombrePersona = persona[0].trim();
             this.ArbolDescendencia(null, nombrePersona, persona[1].substring(1), true);
-            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
+            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, personas);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
@@ -350,7 +350,7 @@ public class UI_BusquedaNombre extends javax.swing.JFrame {
             System.out.println("INICIO");
             this.ArbolAscendencia(nombrePersona , persona[1].substring(1), null);
             System.out.println("FINAL");
-            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, lista_personas);
+            ArbolGraphJGraphT Graf_subArbol = new ArbolGraphJGraphT(subArbol, personas);
         }
         catch(Exception e){
             JOptionPane.showMessageDialog(null, "Debe seleccionar alguna persona, intente nuevamente" );
